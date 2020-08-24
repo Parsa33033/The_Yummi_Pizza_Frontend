@@ -5,7 +5,9 @@ import {RefObject} from "react";
 interface HeaderProps {
     menuSectionRef: RefObject<HTMLDivElement>,
     aboutUsRef: RefObject<HTMLDivElement>,
-    contactUsRef: RefObject<HTMLDivElement>
+    contactUsRef: RefObject<HTMLDivElement>,
+    signinRef: RefObject<HTMLDivElement>,
+    signupRef: RefObject<HTMLDivElement>
 }
 
 class Header extends React.Component<WithTranslation & HeaderProps> {
@@ -25,6 +27,16 @@ class Header extends React.Component<WithTranslation & HeaderProps> {
             this.props.aboutUsRef.current.scrollIntoView({behavior: "smooth"})
     }
 
+    loginAppear = () => {
+        if (this.props.signinRef.current)
+            this.props.signinRef.current.setAttribute("style", "display:block;position: fixed; top: 0; right: 0; left: 0; bottom: 0;");
+    }
+
+    registrationAppear = () => {
+        if (this.props.signupRef.current)
+            this.props.signupRef.current.setAttribute("style", "display:block;position: fixed; top: 0; right: 0; left: 0; bottom: 0;");
+    }
+
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
         return(
             <div>
@@ -42,8 +54,11 @@ class Header extends React.Component<WithTranslation & HeaderProps> {
                                 <li className="nav-item active"><a style={{cursor: "pointer"}} href="/" className="nav-link">Home</a></li>
                                 <li className="nav-item"><a style={{cursor: "pointer"}} className="nav-link" onClick={this.slideToMenuSection}>Menu</a></li>
                                 <li className="nav-item"><a style={{cursor: "pointer"}} className="nav-link" onClick={this.slideToAboutUs}>About</a></li>
-                                <li className="nav-item"><a style={{cursor: "pointer"}} className="nav-link" onClick={this.slideToContactUs}>Contact</a></li>
-                                <li className="nav-item"><a style={{cursor: "pointer"}} className="nav-link" onClick={this.slideToContactUs}><i
+                                <li className="nav-item border-right"><a style={{cursor: "pointer"}} className="nav-link" onClick={this.slideToContactUs}>Contact</a></li>
+
+                                <li className="nav-item"><a style={{cursor: "pointer"}} className="nav-link" onClick={this.loginAppear}>Login</a></li>
+                                <li className="nav-item"><a style={{cursor: "pointer"}} className="nav-link" onClick={this.registrationAppear} >Register</a></li>
+                                <li className="nav-item"><a style={{cursor: "pointer"}} className="nav-link" ><i
                                     className="fas fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>

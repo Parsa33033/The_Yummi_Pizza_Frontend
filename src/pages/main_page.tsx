@@ -38,18 +38,26 @@ import HomeSlider from "../component/home_slider";
 import MenuSection from "../component/menu_section";
 import {createRef, RefObject} from "react";
 import ContactUs from "../component/contact_us";
+import Signin from "../component/signin";
+import Signup from "../component/signup";
 
 class MainPage extends React.Component<WithTranslation> {
 
     menuSectionRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
     aboutUsRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
-    contactUsRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
+    contactUsRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
+    signinRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
+    signupRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
 
 
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
         return(
             <div>
-                <Header aboutUsRef={this.aboutUsRef} contactUsRef={this.contactUsRef} menuSectionRef={this.menuSectionRef}/>
+                <Header aboutUsRef={this.aboutUsRef}
+                        contactUsRef={this.contactUsRef}
+                        menuSectionRef={this.menuSectionRef}
+                        signinRef={this.signinRef}
+                        signupRef={this.signupRef}/>
                 {/** END nav  **/}
 
                 <HomeSlider/>
@@ -273,6 +281,8 @@ class MainPage extends React.Component<WithTranslation> {
                 {/** loader **/}
                 <Loader/>
 
+                <Signin signinRef={this.signinRef}/>
+                <Signup signupRef={this.signupRef}/>
 
             </div>
         );

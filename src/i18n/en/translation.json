@@ -1,3 +1,4 @@
 {
-  "hello": "h"
+  "hello": "h",
+  "activation" : "the user has been activated successfully!"
 }

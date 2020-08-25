@@ -117,7 +117,7 @@ class Signup extends React.Component<WithTranslation & SignupProps & ReturnType<
                 errorMessage: ""
             })
 
-        }, 1000)
+        }, 2000)
     }
 
     registrationDisappear = () => {

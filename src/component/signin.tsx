@@ -43,24 +43,33 @@ class Signin extends React.Component<WithTranslation & SigninProps & ReturnType<
 
     loginUser = async () => {
         if (validator.isEmail(this.state.email)) {
-            const loginDTO: LoginDTO = {
-                username: this.state.email,
-                password: this.state.password,
-                rememberMe: this.state.rememberMe
-            }
-            var i = await this.props.loginUser(loginDTO)
-            if (i == 1) {
-                console.log("logged in!")
-                this.loginDisappear()
+            if (validator.isAlphanumeric(this.state.password) && this.state.password.length > 7) {
+                const loginDTO: LoginDTO = {
+                    username: this.state.email,
+                    password: this.state.password,
+                    rememberMe: this.state.rememberMe
+                }
+                var i = await this.props.loginUser(loginDTO)
+                if (i == 1) {
+                    console.log("logged in!")
+                    this.loginDisappear()
+                } else {
+                    this.setState({
+                        showAlert: true
+                    })
+                    console.log("login error!")
+                }
+                this.setState({
+                    message: this.t("")
+                })
             } else {
                 this.setState({
-                    showAlert: true
+                    message: this.t("login.pass-invalid")
                 })
-                console.log("login error!")
             }
         } else {
             this.setState({
-                message: this.t("email-invalid")
+                message: this.t("login.email-invalid")
             })
         }
     }
@@ -180,13 +189,13 @@ class Signin extends React.Component<WithTranslation & SigninProps & ReturnType<
                                                 <input className="input-checkbox100" id="ckb1" type="checkbox"
                                                        name="remember-me" onChange={this.handleRememberMe} checked={this.state.rememberMe}/>
                                                 <label className="label-checkbox100" htmlFor="ckb1">
-                                                    Remember me
+                                                    {this.t("login.remember-me")}
                                                 </label>
                                             </div>
 
                                             <div>
                                                 <a style={{cursor: "pointer"}} className="txt3" onClick={() => {this.setState({forgotPass: true})}}>
-                                                    Forgot Password?
+                                                    {this.t("login.forgot-password")}
                                                 </a>
                                             </div>
                                         </div>

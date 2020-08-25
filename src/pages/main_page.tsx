@@ -109,7 +109,7 @@ class MainPage extends React.Component<WithTranslation> {
                     <div className="one-half img" style={{backgroundImage: `url(${about_img})`}}></div>
                     <div className="one-half ftco-animate">
                         <div className="heading-section ftco-animate ">
-                            <h2 className="mb-4">Welcome to <span className="flaticon-pizza">Pizza</span> A Restaurant
+                            <h2 className="mb-4">Welcome to <span className="flaticon-pizza">The Yummi Pizza</span>
                             </h2>
                         </div>
                         <div>

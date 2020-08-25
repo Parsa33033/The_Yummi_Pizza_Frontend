@@ -128,7 +128,7 @@ class PasswordResetPage extends React.Component<WithTranslation & RouteComponent
                 <div >
                     {
                         this.state.passwordHasReset ?
-                            <div>Password has been reset</div>
+                            <div style={{padding: 300}}><h2>{this.t("login.pass-has-reset")}</h2></div>
                             :
                             <div style={{ padding: 400}}>
                                 <div style={{height: 500, padding: 300}}>

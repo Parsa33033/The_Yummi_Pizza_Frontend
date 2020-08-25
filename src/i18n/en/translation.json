@@ -12,15 +12,19 @@
     "successful": "registration was successful!",
     "failure": "registration failed!",
     "email-used": "email has already been entered",
-    "pass-not-match": "password and its repetition not matching!",
+    "pass-not-match": "password and its repetition are not matching!",
     "pass-invalid": "passwords must be numbers and letters and must contain at least 7 characters without space!",
-    "email-invalid": "the email your entered is not valid!"
+    "email-invalid": "the email you entered is not valid!"
   },
   "login": {
     "reset-pass": "Reset Password",
     "send-email": "Send Email",
-    "pass-not-match": "password and its repetition not matching!",
-    "pass-invalid": "passwords must be numbers and letters and must contain at least 7 characters without space!"
+    "remember-me": "Remember me",
+    "email-invalid": "the email you entered is not valid!",
+    "forgot-password": "Forgot Password?",
+    "pass-not-match": "password and its repetition are not matching!",
+    "pass-invalid": "passwords must be numbers and letters and must contain at least 7 characters without space!",
+    "pass-has-reset": "Password has been reset"
   },
   "input": {
     "email": "email",

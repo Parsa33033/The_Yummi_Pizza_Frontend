@@ -1,6 +1,9 @@
 import {WithTranslation, withTranslation} from "react-i18next";
 import * as React from "react";
 import {RefObject} from "react";
+import {connect} from "react-redux";
+import {AppState} from "../states/app_state";
+import {AuthenticationState} from "../states/authentication_state";
 
 interface HeaderProps {
     menuSectionRef: RefObject<HTMLDivElement>,
@@ -10,7 +13,7 @@ interface HeaderProps {
     signupRef: RefObject<HTMLDivElement>
 }
 
-class Header extends React.Component<WithTranslation & HeaderProps> {
+class Header extends React.Component<WithTranslation & HeaderProps & ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>> {
 
     slideToMenuSection = () => {
         if (this.props.menuSectionRef.current)
@@ -35,6 +38,7 @@ class Header extends React.Component<WithTranslation & HeaderProps> {
     registrationAppear = () => {
         if (this.props.signupRef.current)
             this.props.signupRef.current.setAttribute("style", "display:block;position: fixed; top: 0; right: 0; left: 0; bottom: 0;");
+
     }
 
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
@@ -56,8 +60,20 @@ class Header extends React.Component<WithTranslation & HeaderProps> {
                                 <li className="nav-item"><a style={{cursor: "pointer"}} className="nav-link" onClick={this.slideToAboutUs}>About</a></li>
                                 <li className="nav-item border-right"><a style={{cursor: "pointer"}} className="nav-link" onClick={this.slideToContactUs}>Contact</a></li>
 
-                                <li className="nav-item"><a style={{cursor: "pointer"}} className="nav-link" onClick={this.loginAppear}>Login</a></li>
-                                <li className="nav-item"><a style={{cursor: "pointer"}} className="nav-link" onClick={this.registrationAppear} >Register</a></li>
+                                {
+                                    this.props.authentication.authenticated == false ?
+                                        <div>
+                                            <ul className="navbar-nav ml-auto">
+                                                <li className="nav-item"><a style={{cursor: "pointer"}} className="nav-link" onClick={this.loginAppear}>Login</a></li>
+                                                <li className="nav-item"><a style={{cursor: "pointer"}} className="nav-link" onClick={this.registrationAppear} >Register</a></li>
+                                            </ul>
+                                        </div>
+                                    :
+                                    <div/>
+
+                                }
+
+
                                 <li className="nav-item"><a style={{cursor: "pointer"}} className="nav-link" ><i
                                     className="fas fa-shopping-cart"></i></a></li>
                             </ul>
@@ -69,4 +85,21 @@ class Header extends React.Component<WithTranslation & HeaderProps> {
     }
 }
 
-export default withTranslation()(Header)
+const mapStateToProps = (state: any) : AppState => {
+    // return {
+    //     id_token: state.authentication.id_token,
+    //     authenticated: state.authentication.authenticated
+    // }
+    return {
+        userState: state.userState,
+        authentication: state.authentication
+    }
+}
+
+const mapDispatchToProps = () => {
+    return {
+        doNone: () => {}
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Header))

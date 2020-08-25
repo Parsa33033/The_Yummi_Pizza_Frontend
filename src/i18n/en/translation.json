@@ -1,4 +1,30 @@
 {
   "hello": "h",
-  "activation" : "the user has been activated successfully!"
+  "activation" : "the user has been activated successfully!",
+  "well-done": "Well Done!",
+  "success": "Operation Successful",
+  "error": "Error!",
+  "failure": "Operation Failed! please try again",
+  "check-email": "check your email",
+  "registration": {
+    "registration": "registration",
+    "register": "Register",
+    "successful": "registration was successful!",
+    "failure": "registration failed!",
+    "email-used": "email has already been entered",
+    "pass-not-match": "password and its repetition not matching!",
+    "pass-invalid": "passwords must be numbers and letters and must contain at least 7 characters without space!",
+    "email-invalid": "the email your entered is not valid!"
+  },
+  "login": {
+    "reset-pass": "Reset Password",
+    "send-email": "Send Email",
+    "pass-not-match": "password and its repetition not matching!",
+    "pass-invalid": "passwords must be numbers and letters and must contain at least 7 characters without space!"
+  },
+  "input": {
+    "email": "email",
+    "password": "password",
+    "repeat-password": "repeat password"
+  }
 }

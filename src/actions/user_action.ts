@@ -34,12 +34,11 @@ export const registerUser = async (dispatch : ThunkDispatch<{}, {}, appActions>,
         }
     }
     return await axios.post(registration_url, JSON.stringify(registerDTO), config).then((response) => {
-        const authenticationState: AuthenticationState = response.data
-        dispatch(authenticateActionCreator(authenticationState))
-        localStorage.setItem("jwt", authenticationState.id_token)
         return 1;
     }).catch((error) => {
+        if (error.response.status == 400) {
+            return 2;
+        }
         return 0
     })
-    return 0
 }

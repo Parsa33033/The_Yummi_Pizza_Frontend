@@ -41,23 +41,24 @@ import ContactUs from "../component/contact_us";
 import Signin from "../component/signin";
 import Signup from "../component/signup";
 
+export const menuSectionRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
+export const aboutUsRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
+export const contactUsRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
+export const signinRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
+export const signupRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
+
 class MainPage extends React.Component<WithTranslation> {
 
-    menuSectionRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
-    aboutUsRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
-    contactUsRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
-    signinRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
-    signupRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
 
 
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
         return(
             <div>
-                <Header aboutUsRef={this.aboutUsRef}
-                        contactUsRef={this.contactUsRef}
-                        menuSectionRef={this.menuSectionRef}
-                        signinRef={this.signinRef}
-                        signupRef={this.signupRef}/>
+                <Header aboutUsRef={aboutUsRef}
+                        contactUsRef={contactUsRef}
+                        menuSectionRef={menuSectionRef}
+                        signinRef={signinRef}
+                        signupRef={signupRef}/>
                 {/** END nav  **/}
 
                 <HomeSlider/>
@@ -172,7 +173,7 @@ class MainPage extends React.Component<WithTranslation> {
                     </div>
                 </section>
 
-                <MenuSection menuSectionRef={this.menuSectionRef}/>
+                <MenuSection menuSectionRef={menuSectionRef}/>
 
                 <section className="ftco-gallery">
                     <div className="container-wrap">
@@ -272,17 +273,17 @@ class MainPage extends React.Component<WithTranslation> {
 
 
 
-                <ContactUs contactUsRef={this.contactUsRef}/>
+                <ContactUs contactUsRef={contactUsRef}/>
 
                 {/** footer **/}
-                <Footer aboutUsRef={this.aboutUsRef}/>
+                <Footer aboutUsRef={aboutUsRef}/>
 
 
                 {/** loader **/}
                 <Loader/>
 
-                <Signin signinRef={this.signinRef}/>
-                <Signup signupRef={this.signupRef}/>
+                <Signin signinRef={signinRef}/>
+                <Signup signupRef={signupRef}/>
 
             </div>
         );

@@ -7,7 +7,8 @@ import {AUTHENTICATE, authenticationActions} from "../actions/authentication_act
 export const authenticationReducer = (state: AuthenticationState = authenticationStateInit, action: authenticationActions) : AuthenticationState => {
     if (action.type == AUTHENTICATE) {
         return {
-            id_token: action.payload.id_token != null ? action.payload.id_token : state.id_token
+            id_token: action.payload.id_token != null ? action.payload.id_token : state.id_token,
+            authenticated: action.payload.authenticated != null ? action.payload.authenticated : state.authenticated
         }
     } else {
         return state;

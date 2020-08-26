@@ -19,10 +19,13 @@ export const pizzariaReducer = (state: PizzariaState = pizzariaStateInit, action
             items: action.payload.items != null ? action.payload.items : state.items,
             id: action.payload.id != null ? action.payload.id : state.id,
             description: action.payload.description != null ? action.payload.description : state.description,
-            deliveryPrice: action.payload.deliveryPrice != null ? action.payload.deliveryPrice : state.deliveryPrice,
             customers: action.payload.customers != null ? action.payload.customers : state.customers,
             addressId: action.payload.addressId != null ? action.payload.addressId : state.addressId,
             address: action.payload.address != null ? action.payload.address : state.address,
+            email: action.payload.email != null ? action.payload.email : state.email,
+            deliveryPriceInEuro: action.payload.deliveryPriceInEuro != null ? action.payload.deliveryPriceInEuro : state.deliveryPriceInEuro,
+            deliveryPriceInDollor: action.payload.deliveryPriceInDollor != null ? action.payload.deliveryPriceInDollor : state.deliveryPriceInDollor,
+            aboutus: action.payload.aboutus != null ? action.payload.aboutus : state.aboutus,
         }
     } else {
         return state;

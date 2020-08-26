@@ -25,8 +25,7 @@ export const getPizzaria = async (dispatch: ThunkDispatch<{}, {}, appActions>) =
     }
     return await axios.get(pizzaria_url, config).then((response) => {
         if (response.status == 200) {
-            var pizzariaList: PizzariaDTO[] = response.data;
-            var pizzaria = pizzariaList[0];
+            var pizzaria: PizzariaDTO = response.data;
             dispatch({
                 type: SET_PIZZARIA,
                 payload: pizzaria

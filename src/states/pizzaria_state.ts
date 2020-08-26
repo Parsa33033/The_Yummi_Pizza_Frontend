@@ -12,7 +12,6 @@ export const pizzariaStateInit: PizzariaState = {
     address: addressStateInit,
     addressId: 0,
     customers: 0,
-    deliveryPrice: 0,
     description: "",
     id: 0,
     items: [menuItemStateInit],
@@ -25,6 +24,10 @@ export const pizzariaStateInit: PizzariaState = {
     orders: [orderStateInit],
     pizzaBranches: 0,
     staff: 0,
+    aboutus: "",
+    deliveryPriceInDollor: 0,
+    deliveryPriceInEuro: 0,
+    email: ""
 }
 
 

@@ -9,11 +9,17 @@ export interface Pizzaria {
 
     description: string,
 
+    aboutus: string,
+
+    email: string,
+
     openHours: string,
 
     openDays: string,
 
-    deliveryPrice: number,
+    deliveryPriceInDollor: number,
+
+    deliveryPriceInEuro: number,
 
     staff: number,
 

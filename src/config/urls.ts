@@ -19,3 +19,4 @@ export const account_url = url + customerPath + "/account"
 
 
 export const pizzaria_url = url + customerPath + "/pizzarias"
+export const customer_message_url = url + customerPath + "/customer-message"

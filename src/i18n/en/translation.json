@@ -41,5 +41,10 @@
     "image": "Image",
     "email": "Email",
     "update": "Update"
+  },
+  "message": {
+    "email-invalid": "the email you entered is not valid!",
+    "fill": "Please fill all the inputs",
+    "sent": "Message has been sent!"
   }
 }

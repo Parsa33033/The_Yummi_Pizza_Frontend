@@ -88,22 +88,22 @@ class MainPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                     <div className="col-md-4 d-flex ftco-animate">
                                         <div className="icon"><span className="icon-phone"></span></div>
                                         <div className="text">
-                                            <h3>000 (123) 456 7890</h3>
-                                            <p>A small river named Duden flows</p>
+                                            <h3>{this.props.pizzariaState.address.phoneNumber}</h3>
+                                            <p>Phone Number</p>
                                         </div>
                                     </div>
                                     <div className="col-md-4 d-flex ftco-animate">
                                         <div className="icon"><span className="icon-my_location"></span></div>
                                         <div className="text">
-                                            <h3>198 West 21th Street</h3>
-                                            <p>Suite 721 New York NY 10016</p>
+                                            <h3>{this.props.pizzariaState.address.address2} - {this.props.pizzariaState.address.address1}</h3>
+                                            <p>{this.props.pizzariaState.address.city} - {this.props.pizzariaState.address.state} </p>
                                         </div>
                                     </div>
                                     <div className="col-md-4 d-flex ftco-animate">
                                         <div className="icon"><span className="icon-clock-o"></span></div>
                                         <div className="text">
-                                            <h3>Open Monday-Friday</h3>
-                                            <p>8:00am - 9:00pm</p>
+                                            <h3>Open {this.props.pizzariaState.openDays}</h3>
+                                            <p>{this.props.pizzariaState.openHours}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -130,12 +130,10 @@ class MainPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                             </h2>
                         </div>
                         <div>
-                            <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from
-                                it would have been rewritten a thousand times and everything that was left from its
-                                origin would be the word "and" and the Little Blind Text should turn around and return
-                                to its own, safe country. But nothing the copy said could convince her and so it didn’t
-                                take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and
-                                Parole and dragged her into their agency, where they abused her for their.</p>
+                            <p>Pizza is a savory dish of Italian origin consisting of a usually round,
+                                flattened base of leavened wheat-based dough topped with tomatoes, cheese,
+                                and often various other ingredients which is then baked at a high temperature,
+                                traditionally in a wood-fired oven. A small pizza is sometimes called a pizzetta.</p>
                         </div>
                     </div>
                 </section>
@@ -146,8 +144,7 @@ class MainPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                         <div className="row justify-content-center mb-5 pb-3">
                             <div className="col-md-7 heading-section ftco-animate text-center">
                                 <h2 className="mb-4">Our Services</h2>
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                                    Consonantia, there live the blind texts.</p>
+                                <p>We are trying our best to service our customers to the fullest</p>
                             </div>
                         </div>
                         <div className="row">
@@ -158,8 +155,7 @@ class MainPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                     </div>
                                     <div className="media-body">
                                         <h3 className="heading">Healthy Foods</h3>
-                                        <p>Even the all-powerful Pointing has no control about the blind texts it is an
-                                            almost unorthographic.</p>
+                                        <p>Our foods are cooked with healthy and organic ingredients. everything is fresh.</p>
                                     </div>
                                 </div>
                             </div>
@@ -170,8 +166,7 @@ class MainPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                     </div>
                                     <div className="media-body">
                                         <h3 className="heading">Fastest Delivery</h3>
-                                        <p>Even the all-powerful Pointing has no control about the blind texts it is an
-                                            almost unorthographic.</p>
+                                        <p>Our fast deliveries guarantee hot food for our custommers.</p>
                                     </div>
                                 </div>
                             </div>
@@ -181,8 +176,7 @@ class MainPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                         className="flaticon-pizza-1"></span></div>
                                     <div className="media-body">
                                         <h3 className="heading">Original Recipes</h3>
-                                        <p>Even the all-powerful Pointing has no control about the blind texts it is an
-                                            almost unorthographic.</p>
+                                        <p>We pride ourselves with our original recipies. We are one of the kind in making delicious pizzas.</p>
                                     </div>
                                 </div>
                             </div>
@@ -244,7 +238,7 @@ class MainPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                         <div className="block-18 text-center">
                                             <div className="text">
                                                 <div className="icon"><span className="flaticon-pizza-1"></span></div>
-                                                <strong className="number" data-number="100">0</strong>
+                                                <strong className="number" data-number={this.props.pizzariaState.pizzaBranches.toString()}>0</strong>
                                                 <span>Pizza Branches</span>
                                             </div>
                                         </div>
@@ -254,7 +248,7 @@ class MainPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                         <div className="block-18 text-center">
                                             <div className="text">
                                                 <div className="icon"><span className="flaticon-medal"></span></div>
-                                                <strong className="number" data-number="85">0</strong>
+                                                <strong className="number" data-number={this.props.pizzariaState.numberOfAwards.toString()}>0</strong>
                                                 <span>Number of Awards</span>
                                             </div>
                                         </div>
@@ -274,7 +268,7 @@ class MainPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                         <div className="block-18 text-center">
                                             <div className="text">
                                                 <div className="icon"><span className="flaticon-chef"></span></div>
-                                                <strong className="number" data-number="900">0</strong>
+                                                <strong className="number" data-number={this.props.pizzariaState.staff.toString()}>0</strong>
                                                 <span>Staff</span>
                                             </div>
                                         </div>
@@ -286,10 +280,6 @@ class MainPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                 </section>
 
 
-
-
-
-
                 <ContactUs contactUsRef={contactUsRef}/>
 
                 {/** footer **/}
@@ -297,7 +287,7 @@ class MainPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
 
 
                 {/** loader **/}
-                {/*<Loader/>*/}
+                <Loader/>
 
                 <Signin signinRef={signinRef}/>
                 <Signup signupRef={signupRef}/>

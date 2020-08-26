@@ -34,8 +34,8 @@ class MenuSection extends React.Component<WithTranslation & MenuSectionProps> {
                         <div className="row justify-content-center mb-5 pb-3">
                             <div className="col-md-7 heading-section ftco-animate text-center">
                                 <h2 className="mb-4">Hot Pizza Meals</h2>
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                                    Consonantia, there live the blind texts.</p>
+                                {/*<p>Far far away, behind the word mountains, far from the countries Vokalia and*/}
+                                {/*    Consonantia, there live the blind texts.</p>*/}
                             </div>
                         </div>
                     </div>

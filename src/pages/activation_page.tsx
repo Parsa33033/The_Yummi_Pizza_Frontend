@@ -5,11 +5,15 @@ import * as React from "react";
 import bg1 from "../assets/images/bg_1.jpg";
 import bg3 from "../assets/images/bg_3.jpg";
 import Footer from "../component/footer";
-import {aboutUsRef} from "./main_page";
+import {aboutUsRef, contactUsRef, menuSectionRef, signinRef, signupRef} from "./main_page";
 import {RouteComponentProps } from "react-router-dom"
 import querystring from "querystring"
 import axios from 'axios'
 import {activatoin_url} from "../config/urls";
+import Header from "../component/header";
+import HeaderMin from "../component/header_min";
+import Breadcrumb from "../component/breadcrumb";
+import {loadScripts} from "../config/load_scripts";
 
 interface MatchParams {
     key: string;
@@ -19,7 +23,10 @@ interface ActivationPageState {
     activated: boolean
 }
 
-class ActivationPage extends React.Component<WithTranslation & RouteComponentProps<MatchParams>, ActivationPageState> {
+class ActivationPage extends React.Component<WithTranslation & RouteComponentProps<MatchParams>, ActivationPageState, RouteComponentProps> {
+    t = this.props.t
+
+
 
     constructor(props: WithTranslation & RouteComponentProps<MatchParams>) {
         super(props);
@@ -40,56 +47,36 @@ class ActivationPage extends React.Component<WithTranslation & RouteComponentPro
         })
     }
 
+    componentWillMount(): void {
+        loadScripts()
+    }
+
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
         return(
             <div>
+                 <HeaderMin aboutUsRef={aboutUsRef}
+                            contactUsRef={contactUsRef}
+                            menuSectionRef={menuSectionRef}
+                            signinRef={signinRef}
+                            signupRef={signupRef}
+                            staticContext={this.props.staticContext}
+                            match={this.props.match}
+                            location={this.props.location}
+                            history={this.props.history}/>
+                <Breadcrumb title={this.t("registration.activation")}/>
                 {
                     this.state.activated ?
                         <div>
-                            <nav className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
-                                 id="ftco-navbar">
-                                <div className="container">
-                                    <a className="navbar-brand" href="index.html"><span className="flaticon-pizza-1 mr-1"></span>Pizza<br/>
-                                        <small>Delicous</small></a>
-                                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-                                            aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                                        <span className="oi oi-menu"></span> Menu
-                                    </button>
-                                    <div className="collapse navbar-collapse" id="ftco-nav">
-                                        <ul className="navbar-nav ml-auto">
-                                            <li className="nav-item active"><a style={{cursor: "pointer"}} href="/" className="nav-link">Home</a></li>
 
-                                        </ul>
-                                    </div>
-                                </div>
-                            </nav>
-
-                            <section className="home-slider owl-carousel img" style={{backgroundImage: `url(${bg1})`}}>
-
-                                <div className="slider-item" style={{backgroundImage: `url(${bg3})`}}>
-                                    <div className="overlay"></div>
-                                    <div className="container">
-                                        <div className="row slider-text justify-content-center align-items-center">
-
-                                            <div className="col-md-7 col-sm-12 text-center ftco-animate">
-                                                <h1 className="mb-3 mt-5 bread">Account Activation</h1>
-                                                <p className="breadcrumbs"><span className="mr-2"><a
-                                                    href="/">Home</a></span> <span>Account Activation</span></p>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
                            <div style={{height: 500, padding: 300}}>
                                <h1>{this.props.t("activation")}</h1>
                            </div>
-                            <Footer aboutUsRef={aboutUsRef}/>
+
                         </div>
                         :
                         <div/>
                 }
-
+                <Footer aboutUsRef={aboutUsRef}/>
             </div>
         )
     }

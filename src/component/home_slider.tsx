@@ -75,6 +75,7 @@ class HomeSlider extends React.Component<WithTranslation> {
                         </div>
                     </div>
                 </section>
+
             </div>
         )
     }

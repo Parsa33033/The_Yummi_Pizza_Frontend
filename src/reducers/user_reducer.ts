@@ -9,6 +9,7 @@ export const userReducer = (state: UserState = userStateInit, action: userAction
             lastName: action.payload.lastName != null ? action.payload.lastName : state.lastName,
             firstName: action.payload.firstName != null ? action.payload.firstName : state.firstName,
             email: action.payload.email != null ? action.payload.email : state.email,
+            authorities: action.payload.authorities != null ? action.payload.authorities: state.authorities
         }
     } else {
         return state;

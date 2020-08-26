@@ -29,6 +29,7 @@ class MenuSection extends React.Component<WithTranslation & MenuSectionProps> {
         return(
             <div ref={this.props.menuSectionRef}>
                 <section className="ftco-section">
+
                     <div className="container">
                         <div className="row justify-content-center mb-5 pb-3">
                             <div className="col-md-7 heading-section ftco-animate text-center">
@@ -38,6 +39,8 @@ class MenuSection extends React.Component<WithTranslation & MenuSectionProps> {
                             </div>
                         </div>
                     </div>
+
+
                     <div className="container-wrap">
                         <div className="row no-gutters d-flex">
                             <div className="col-lg-4 d-flex ftco-animate">

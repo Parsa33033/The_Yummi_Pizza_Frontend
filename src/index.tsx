@@ -7,10 +7,12 @@ import "./config/i18n"
 import {Provider} from "react-redux";
 import {store} from "./config/store";
 
+
 ReactDOM.render(
+
   <React.StrictMode>
       <Provider store={store}>
-    <App />
+        <App />
       </Provider>
   </React.StrictMode>,
   document.getElementById('root')

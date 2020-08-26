@@ -47,15 +47,17 @@ class Signup extends React.Component<WithTranslation & SignupProps & ReturnType<
     }
 
     registerUser = async () => {
-        if (validator.isEmail(this.state.email)) {
+        var email = this.state.email
+        if (validator.isEmail(email)) {
             if (validator.isAlphanumeric(this.state.password) && this.state.password.length > 7) {
                 if (this.state.passwordRepeat == this.state.password) {
                     const user: RegisterDTO = {
-                        email: this.state.email,
+                        email: email,
                         password: this.state.password,
-                        login: this.state.email,
+                        login: email,
                         firstName: "",
-                        lastName: ""
+                        lastName: "",
+                        authorities: []
                     }
                     var i = await this.props.registerUser(user)
                     if (i == 1) {
@@ -63,7 +65,7 @@ class Signup extends React.Component<WithTranslation & SignupProps & ReturnType<
                         this.setState({
                             showAlert: true,
                             successfulRegistration: true,
-                            registrationMessage: this.t("registration.successful") + ", " + this.t("check-email")
+                            registrationMessage: this.t("registration.successful") + ", " + this.t("registration.check-email")
                         })
                         this.endingRegistration()
                     } else if (i == 2) {
@@ -117,7 +119,7 @@ class Signup extends React.Component<WithTranslation & SignupProps & ReturnType<
                 errorMessage: ""
             })
 
-        }, 2000)
+        }, 3000)
     }
 
     registrationDisappear = () => {

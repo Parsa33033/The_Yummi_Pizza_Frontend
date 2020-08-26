@@ -5,6 +5,7 @@ export const userStateInit: UserState = {
     firstName: "",
     lastName: "",
     login: "",
+    authorities: []
 }
 
 export interface UserState extends User {

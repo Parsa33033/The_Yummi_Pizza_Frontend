@@ -40,6 +40,13 @@ import {createRef, RefObject} from "react";
 import ContactUs from "../component/contact_us";
 import Signin from "../component/signin";
 import Signup from "../component/signup";
+import {RouteComponentProps, withRouter} from "react-router";
+import {loadScripts} from "../config/load_scripts";
+import {AppState} from "../states/app_state";
+import {ThunkDispatch} from "redux-thunk";
+import {appActions} from "../actions/app_action";
+import {connect} from "react-redux";
+import {getPizzaria} from "../actions/pizzaria_actions";
 
 export const menuSectionRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
 export const aboutUsRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
@@ -47,8 +54,13 @@ export const contactUsRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>
 export const signinRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
 export const signupRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
 
-class MainPage extends React.Component<WithTranslation> {
 
+class MainPage extends React.Component<WithTranslation & ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & RouteComponentProps> {
+
+    componentWillMount(): void {
+        loadScripts()
+        this.props.getPizzaria()
+    }
 
 
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
@@ -58,10 +70,15 @@ class MainPage extends React.Component<WithTranslation> {
                         contactUsRef={contactUsRef}
                         menuSectionRef={menuSectionRef}
                         signinRef={signinRef}
-                        signupRef={signupRef}/>
+                        signupRef={signupRef}
+                history={this.props.history}
+                location={this.props.location}
+                match={this.props.match}
+                staticContext={this.props.staticContext}/>
                 {/** END nav  **/}
 
                 <HomeSlider/>
+
 
                 <section className="ftco-intro">
                     <div className="container-wrap">
@@ -247,7 +264,7 @@ class MainPage extends React.Component<WithTranslation> {
                                         <div className="block-18 text-center">
                                             <div className="text">
                                                 <div className="icon"><span className="flaticon-laugh"></span></div>
-                                                <strong className="number" data-number="10567">0</strong>
+                                                <strong className="number" data-number={this.props.pizzariaState.customers.toString()}>0</strong>
                                                 <span>Happy Customer</span>
                                             </div>
                                         </div>
@@ -280,7 +297,7 @@ class MainPage extends React.Component<WithTranslation> {
 
 
                 {/** loader **/}
-                <Loader/>
+                {/*<Loader/>*/}
 
                 <Signin signinRef={signinRef}/>
                 <Signup signupRef={signupRef}/>
@@ -290,4 +307,22 @@ class MainPage extends React.Component<WithTranslation> {
     }
 }
 
-export default withTranslation()(MainPage);
+const mapStateToProps = (state: any) : AppState => {
+    return {
+        userState: state.userState,
+        authentication: state.authentication,
+        cartState: state.cartState,
+        customerState: state.customerState,
+        managerState: state.managerState,
+        menuItemListState: state.menuItemListState,
+        pizzariaState: state.pizzariaState
+    }
+}
+
+const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, appActions>) => {
+    return {
+        getPizzaria : () => getPizzaria(dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(withRouter(MainPage)));

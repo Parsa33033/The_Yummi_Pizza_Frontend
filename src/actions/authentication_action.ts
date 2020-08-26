@@ -4,8 +4,11 @@ import {ThunkDispatch} from "redux-thunk";
 import {appActions} from "./app_action";
 import {RegisterDTO} from "../dto/register_dto";
 import axios, {AxiosRequestConfig} from "axios";
-import {login_url, password_reset_init_url, registration_url} from "../config/urls";
+import {account_url, login_url, password_reset_init_url, registration_url} from "../config/urls";
 import {LoginDTO} from "../dto/login_dto";
+import {UserDTO} from "../dto/user_dto";
+import {SET_USER} from "./user_action";
+import {UserState} from "../states/user_state";
 
 
 export const AUTHENTICATE = "authenticate"
@@ -31,7 +34,7 @@ export const loginUser = async (dispatch: ThunkDispatch<{}, {}, appActions>, log
             "Content-Type": "application/json"
         }
     }
-    return await axios.post(login_url, JSON. stringify(loginDTO), config).then((response) => {
+    return await axios.post(login_url, JSON. stringify(loginDTO), config).then(async (response) =>  {
         const authentication: AuthenticationState = response.data
         authentication.authenticated = true
         dispatch({
@@ -39,11 +42,38 @@ export const loginUser = async (dispatch: ThunkDispatch<{}, {}, appActions>, log
             payload: authentication
         })
         localStorage.setItem("jwt", authentication.id_token)
-        return 1;
-    }).catch((error) => {
-        if (error.response.status == 400) {
-            return 2;
+        const config: AxiosRequestConfig = {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + authentication.id_token
+            }
         }
+        return await axios.get(account_url, config).then((response) => {
+            if (response.status == 200) {
+                const userDTO: UserDTO = response.data
+                const userState: UserState = {
+                    authorities: userDTO.authorities,
+                    firstName: userDTO.firstName,
+                    lastName: userDTO.lastName,
+                    login: userDTO.login,
+                    email: userDTO.email
+                }
+                console.log(response.status + "---->" + userDTO.authorities[0])
+                dispatch({
+                    type: SET_USER,
+                    payload: userState
+                })
+                return 1
+            }
+            return 0
+        }).catch((e) => {
+            // console.log("error: " + e.response.status)
+            return 0
+        })
+    }).catch((error) => {
+        // if (error.response.status == 400) {
+        //     return 2;
+        // }
         return 0
     })
 }
@@ -63,6 +93,6 @@ export const sendPassResetEmail = async (email: string) => {
         }
     }).catch((e) => {
         return 0
-        console.log("error: " + e.response.status)
+        // console.log("error: " + e.response.status)
     })
 }

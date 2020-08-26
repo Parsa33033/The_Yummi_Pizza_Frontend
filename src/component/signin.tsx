@@ -42,10 +42,11 @@ class Signin extends React.Component<WithTranslation & SigninProps & ReturnType<
     }
 
     loginUser = async () => {
-        if (validator.isEmail(this.state.email)) {
+        var email = this.state.email.toLowerCase()
+        if (validator.isEmail(email)) {
             if (validator.isAlphanumeric(this.state.password) && this.state.password.length > 7) {
                 const loginDTO: LoginDTO = {
-                    username: this.state.email,
+                    username: email,
                     password: this.state.password,
                     rememberMe: this.state.rememberMe
                 }
@@ -75,8 +76,9 @@ class Signin extends React.Component<WithTranslation & SigninProps & ReturnType<
     }
 
     sendPassResetEmail = async () => {
-        if (validator.isEmail(this.state.email)) {
-            var i = await sendPassResetEmail(this.state.email)
+        var email = this.state.email.toLowerCase()
+        if (validator.isEmail(email)) {
+            var i = await sendPassResetEmail(email)
             if (i == 1) {
                 this.setState({
                     message: this.t("success") + ", " + this.t("check-email")

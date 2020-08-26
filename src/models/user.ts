@@ -9,4 +9,12 @@ export interface User {
 
     email: string,
 
+    authorities: string[]
+}
+
+
+export enum Authority {
+    ROLE_USER,
+    ROLE_ADMIN,
+    ROLE_MANAGER
 }

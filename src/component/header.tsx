@@ -4,6 +4,8 @@ import {RefObject} from "react";
 import {connect} from "react-redux";
 import {AppState} from "../states/app_state";
 import {AuthenticationState} from "../states/authentication_state";
+import {Authority} from "../models/user";
+import {RouteComponentProps} from "react-router";
 
 interface HeaderProps {
     menuSectionRef: RefObject<HTMLDivElement>,
@@ -13,7 +15,7 @@ interface HeaderProps {
     signupRef: RefObject<HTMLDivElement>
 }
 
-class Header extends React.Component<WithTranslation & HeaderProps & ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>> {
+class Header extends React.Component<WithTranslation & HeaderProps & ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & RouteComponentProps> {
 
     slideToMenuSection = () => {
         if (this.props.menuSectionRef.current)
@@ -69,13 +71,47 @@ class Header extends React.Component<WithTranslation & HeaderProps & ReturnType<
                                             </ul>
                                         </div>
                                     :
-                                    <div/>
+                                        this.props.userState.authorities.includes(Authority[Authority.ROLE_USER]) ?
+                                            <div style={{padding: 10, margin: "0 auto", width: "100%", zIndex:100}}>
+
+                                                <div className="dropdown">
+                                                    <button className="btn btn-secondary dropdown-toggle" type="button"
+                                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                        <h6>{this.props.userState.login}</h6>
+                                                    </button>
+                                                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a className="dropdown-item" style={{cursor: "pointer"}} onClick={() => this.props.history.push("/profile")}><i style={{paddingRight: 4}}
+                                                            className="fas fa-user"></i>   Profile</a>
+                                                        <a className="dropdown-item" href="#"><i style={{paddingRight: 4}}
+                                                            className="fa fa-list-alt" aria-hidden="true"></i>
+                                                               Orders</a>
+                                                        <a className="dropdown-item" href="#"><i style={{paddingRight: 4}}
+                                                            className="fas fa-sign-out-alt"></i>   Logout</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            :
+                                            <div style={{padding: 10, margin: "0 auto", width: "100%", zIndex:100}}>
+
+                                                <div className="dropdown">
+                                                    <button className="btn btn-secondary dropdown-toggle" type="button"
+                                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                        <h6>{this.props.userState.login} - Manager</h6>
+                                                    </button>
+                                                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a className="dropdown-item" href="#">Action</a>
+                                                        <a className="dropdown-item" href="#">Another action</a>
+                                                        <a className="dropdown-item" href="#">Something else here</a>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                 }
 
-
-                                <li className="nav-item"><a style={{cursor: "pointer"}} className="nav-link" ><i
-                                    className="fas fa-shopping-cart"></i></a></li>
+                                <li className="nav-item"><a style={{cursor: "pointer"}} className="nav-link" ><i style={{height: 20, width: 40}}
+                                    className="fas fa-shopping-cart"><span className="badge badge-light" style={{position: "relative", top: 0, right: 0}}>9</span></i></a> </li>
                             </ul>
                         </div>
                     </div>
@@ -86,13 +122,14 @@ class Header extends React.Component<WithTranslation & HeaderProps & ReturnType<
 }
 
 const mapStateToProps = (state: any) : AppState => {
-    // return {
-    //     id_token: state.authentication.id_token,
-    //     authenticated: state.authentication.authenticated
-    // }
     return {
         userState: state.userState,
-        authentication: state.authentication
+        authentication: state.authentication,
+        cartState: state.cartState,
+        customerState: state.customerState,
+        managerState: state.managerState,
+        menuItemListState: state.menuItemListState,
+        pizzariaState: state.pizzariaState
     }
 }
 

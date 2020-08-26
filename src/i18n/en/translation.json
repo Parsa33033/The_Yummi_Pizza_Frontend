@@ -14,7 +14,9 @@
     "email-used": "email has already been entered",
     "pass-not-match": "password and its repetition are not matching!",
     "pass-invalid": "passwords must be numbers and letters and must contain at least 7 characters without space!",
-    "email-invalid": "the email you entered is not valid!"
+    "email-invalid": "the email you entered is not valid!",
+    "activation": "Account Activation",
+    "check-email": "check your email for verification"
   },
   "login": {
     "reset-pass": "Reset Password",
@@ -30,5 +32,14 @@
     "email": "email",
     "password": "password",
     "repeat-password": "repeat password"
+  },
+  "profile": {
+    "page": "User Profile",
+    "firstname": "First Name",
+    "lastname": "Last Name",
+    "gender": "Gender",
+    "image": "Image",
+    "email": "Email",
+    "update": "Update"
   }
 }

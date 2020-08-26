@@ -36,9 +36,9 @@ export const registerUser = async (dispatch : ThunkDispatch<{}, {}, appActions>,
     return await axios.post(registration_url, JSON.stringify(registerDTO), config).then((response) => {
         return 1;
     }).catch((error) => {
-        if (error.response.status == 400) {
-            return 2;
-        }
+        // if (error.response.status == 400) {
+        //     return 2;
+        // }
         return 0
     })
 }

@@ -4,6 +4,7 @@ import {orderActions} from "./order_action";
 import {customerActions} from "./cutomer_action";
 import {pizzariaActions} from "./pizzaria_actions";
 import {managerActions} from "./manager_action";
+import {localeActions} from "./locale_action";
 
 
 export type appActions = userActions |
@@ -11,4 +12,5 @@ export type appActions = userActions |
                         orderActions |
                         customerActions |
                         pizzariaActions |
-                        managerActions;
+                        managerActions|
+                        localeActions;

@@ -47,8 +47,8 @@
 
 	var carousel = function() {
 		$('.home-slider').owlCarousel({
-	    loop:true,
-	    autoplay: true,
+	    loop:false,
+	    autoplay: false,
 	    margin:0,
 	    animateOut: 'fadeOut',
 	    animateIn: 'fadeIn',
@@ -72,9 +72,9 @@
 	    }
 		});
 		$('.carousel-work').owlCarousel({
-			autoplay: true,
+			autoplay: false,
 			center: true,
-			loop: true,
+			loop: false,
 			items:1,
 			margin: 30,
 			stagePadding:0,

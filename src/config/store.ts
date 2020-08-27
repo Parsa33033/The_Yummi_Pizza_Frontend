@@ -8,6 +8,7 @@ import {menuItemListReducer} from "../reducers/menu_item_reducer";
 import {managerReducer} from "../reducers/manager_reducer";
 import {customerReducer} from "../reducers/customer_reducer";
 import {cartReducer} from "../reducers/order_reducer";
+import {localeReducer} from "../reducers/localeReducer";
 
 const reducers = combineReducers<AppState>({
     userState: userReducer,
@@ -16,7 +17,8 @@ const reducers = combineReducers<AppState>({
     menuItemListState: menuItemListReducer,
     managerState: managerReducer,
     customerState: customerReducer,
-    cartState: cartReducer
+    cartState: cartReducer,
+    localeState: localeReducer
 })
 
 export const store = createStore(reducers, applyMiddleware(thunk))

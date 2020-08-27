@@ -105,8 +105,8 @@ class HeaderMin extends React.Component<WithTranslation & HeaderProps & ReturnTy
 
                                 }
 
-                                <li className="nav-item"><a style={{cursor: "pointer"}} className="nav-link" ><i style={{height: 40, width: 40}}
-                                                                                                                 className="fas fa-shopping-cart"><span className="badge badge-light" style={{position: "relative", top: 0, right: 0}}>9</span></i></a> </li>
+                                {/*<li className="nav-item"><a style={{cursor: "pointer"}} className="nav-link" ><i style={{height: 40, width: 40}}*/}
+                                {/*                                                                                 className="fas fa-shopping-cart"><span className="badge badge-light" style={{position: "relative", top: 0, right: 0}}>9</span></i></a> </li>*/}
                             </ul>
                         </div>
                     </div>
@@ -124,7 +124,8 @@ const mapStateToProps = (state: any) : AppState => {
         customerState: state.customerState,
         managerState: state.managerState,
         menuItemListState: state.menuItemListState,
-        pizzariaState: state.pizzariaState
+        pizzariaState: state.pizzariaState,
+        localeState: state.localeState
     }
 }
 

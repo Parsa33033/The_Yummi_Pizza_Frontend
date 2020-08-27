@@ -165,7 +165,8 @@ const mapStateToProps = (state: any) : AppState => {
         customerState: state.customerState,
         managerState: state.managerState,
         menuItemListState: state.menuItemListState,
-        pizzariaState: state.pizzariaState
+        pizzariaState: state.pizzariaState,
+        localeState: state.localeState
     }
 }
 

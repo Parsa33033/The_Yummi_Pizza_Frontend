@@ -12,6 +12,7 @@ const scriptSrcList = [
     "assets/js/aos.js",
     "assets/js/jquery.animateNumber.min.js",
     "assets/js/bootstrap-datepicker.js",
+    "https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js",
     "assets/js/jquery.timepicker.min.js",
     "assets/js/scrollax.min.js",
     "https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false",

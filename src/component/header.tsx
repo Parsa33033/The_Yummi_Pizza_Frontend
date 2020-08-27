@@ -34,18 +34,18 @@ class Header extends React.Component<WithTranslation & HeaderProps & ReturnType<
 
     loginAppear = () => {
         if (this.props.signinRef.current)
-            this.props.signinRef.current.setAttribute("style", "display:block;position: fixed; top: 0; right: 0; left: 0; bottom: 0;");
+            this.props.signinRef.current.setAttribute("style", "display:block;position: fixed; top: 0; right: 0; left: 0; bottom: 0; z-index: 1000;");
     }
 
     registrationAppear = () => {
         if (this.props.signupRef.current)
-            this.props.signupRef.current.setAttribute("style", "display:block;position: fixed; top: 0; right: 0; left: 0; bottom: 0;");
+            this.props.signupRef.current.setAttribute("style", "display:block;position: fixed; top: 0; right: 0; left: 0; bottom: 0; z-index: 1000;");
 
     }
 
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
         return(
-            <div>
+            <div >
                 <nav className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
                      id="ftco-navbar">
                     <div className="container">
@@ -110,8 +110,18 @@ class Header extends React.Component<WithTranslation & HeaderProps & ReturnType<
 
                                 }
 
-                                <li className="nav-item"><a style={{cursor: "pointer"}} className="nav-link" ><i style={{height: 20, width: 40}}
-                                    className="fas fa-shopping-cart"><span className="badge badge-light" style={{position: "relative", top: 0, right: 0}}>9</span></i></a> </li>
+                                <li className="nav-item"><a style={{cursor: "pointer"}} onClick={() => this.props.history.push("/cart")} className="nav-link" >
+                                    <i style={{height: 20, width: 40}}
+                                       className="fas fa-shopping-cart">
+                                    {
+                                        this.props.cartState.items.length >= 1 ?
+                                            <span className="badge badge-light" style={{position: "relative", top: 0, right: 0}}>{this.props.cartState.items.map((orderItem) => {return orderItem.number}).reduce((oldVal, newVal)=> oldVal + newVal)}</span>
+                                            :
+                                            <div/>
+                                    }
+                                    </i>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -129,7 +139,8 @@ const mapStateToProps = (state: any) : AppState => {
         customerState: state.customerState,
         managerState: state.managerState,
         menuItemListState: state.menuItemListState,
-        pizzariaState: state.pizzariaState
+        pizzariaState: state.pizzariaState,
+        localeState: state.localeState
     }
 }
 

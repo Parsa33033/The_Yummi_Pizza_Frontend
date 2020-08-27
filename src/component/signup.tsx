@@ -142,7 +142,7 @@ class Signup extends React.Component<WithTranslation & SignupProps & ReturnType<
 
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
         return (
-            <div ref={this.props.signupRef} style={{display: "none", position: "fixed", top: 0, right: 0, left: 0, bottom: 0}}>
+            <div ref={this.props.signupRef} style={{display: "none", position: "fixed", top: 0, right: 0, left: 0, bottom: 0, zIndex: 1000}}>
                 {
                     this.state.showAlert ?
                         <div style={{display: "block", width: "100%"}}>

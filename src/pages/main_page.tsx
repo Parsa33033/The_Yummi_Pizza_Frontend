@@ -47,6 +47,7 @@ import {ThunkDispatch} from "redux-thunk";
 import {appActions} from "../actions/app_action";
 import {connect} from "react-redux";
 import {getPizzaria} from "../actions/pizzaria_actions";
+import {getMenuItemList} from "../actions/order_action";
 
 export const menuSectionRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
 export const aboutUsRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
@@ -57,9 +58,11 @@ export const signupRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
 
 class MainPage extends React.Component<WithTranslation & ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & RouteComponentProps> {
 
-    componentWillMount(): void {
+    componentWillMount = () => {
         loadScripts()
+
         this.props.getPizzaria()
+        this.props.getMenuItemList()
     }
 
 
@@ -305,13 +308,15 @@ const mapStateToProps = (state: any) : AppState => {
         customerState: state.customerState,
         managerState: state.managerState,
         menuItemListState: state.menuItemListState,
-        pizzariaState: state.pizzariaState
+        pizzariaState: state.pizzariaState,
+        localeState: state.localeState
     }
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, appActions>) => {
     return {
-        getPizzaria : () => getPizzaria(dispatch)
+        getPizzaria : () => getPizzaria(dispatch),
+        getMenuItemList: () => getMenuItemList(dispatch)
     }
 }
 

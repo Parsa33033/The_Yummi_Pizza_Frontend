@@ -116,7 +116,7 @@ class Signin extends React.Component<WithTranslation & SigninProps & ReturnType<
 
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
         return (
-            <div ref={this.props.signinRef} style={{display: "none", position: "fixed", top: 0, right: 0, left: 0, bottom: 0}}>
+            <div ref={this.props.signinRef} style={{display: "none", position: "fixed", top: 0, right: 0, left: 0, bottom: 0, zIndex: 1000}}>
                 <div className="limiter">
                     <div className="container-login100" style={{backgroundColor: "grey", opacity: 0.7, position: "fixed", top: 0, right: 0, left: 0, bottom: 0}}/>
                     <div className="container-login100" style={{backgroundColor: "transparent"}}>

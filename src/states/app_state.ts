@@ -5,6 +5,7 @@ import {MenuItemListState, menuItemListStateInit} from "./menu_item_state";
 import {CustomerState, customerStateInit} from "./customer_state";
 import {PizzariaState, pizzariaStateInit} from "./pizzaria_state";
 import {ManagerState, managerStateInit} from "./manager_state";
+import {LocaleState, localeStateInit} from "./locale_state";
 
 export const appStateInit: AppState = {
     userState: userStateInit,
@@ -13,7 +14,8 @@ export const appStateInit: AppState = {
     customerState: customerStateInit,
     managerState: managerStateInit,
     menuItemListState: menuItemListStateInit,
-    pizzariaState: pizzariaStateInit
+    pizzariaState: pizzariaStateInit,
+    localeState: localeStateInit
 }
 
 export interface AppState {
@@ -24,4 +26,5 @@ export interface AppState {
     customerState: CustomerState,
     pizzariaState: PizzariaState,
     managerState: ManagerState,
+    localeState: LocaleState
 }

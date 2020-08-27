@@ -16,7 +16,7 @@ export const menuItemStateInit: MenuItemState = {
 }
 
 export const menuItemListStateInit: MenuItemListState = {
-    items: [menuItemStateInit]
+    items: []
 }
 
 export interface MenuItemState extends MenuItem {

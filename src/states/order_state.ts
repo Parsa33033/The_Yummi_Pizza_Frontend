@@ -14,7 +14,7 @@ export const orderItemStateInit: OrderItemState = {
 }
 
 export const cartStateInit: CartState = {
-    items: [orderItemStateInit]
+    items: []
 }
 
 export const orderStateInit: OrderState = {
@@ -23,13 +23,13 @@ export const orderStateInit: OrderState = {
     date: new Date(),
     delivered: false,
     id: 0,
-    items: [orderItemStateInit],
+    items: [],
     pizzariaId: 0,
     totalPrice: 0
 }
 
 export const orderListStateInit: OrderListState = {
-    orders: [orderStateInit]
+    orders: []
 }
 
 export interface OrderItemState extends OrderItem {

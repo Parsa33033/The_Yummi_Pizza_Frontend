@@ -5,6 +5,7 @@ import ActivationPage from "./pages/activation_page"
 import ResetPasswordPage from "./pages/password_reset_page"
 import ProfilePage from "./pages/profile_page"
 import CartPage from "./pages/cart_page"
+import CheckoutPage from "./pages/checkout_page"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {loadScripts} from "./config/load_scripts";
 
@@ -22,6 +23,7 @@ class App extends React.Component {
                         <Route path="/password-reset"  component={ResetPasswordPage}/>
                         <Route path="/profile"  component={ProfilePage}/>
                         <Route path="/cart" component={CartPage}/>
+                        <Route path="/checkout" component={CheckoutPage}/>
                         <Route path="*" component={MainPage}/>
                     </Switch>
                 </Router>

@@ -48,6 +48,7 @@ import {appActions} from "../actions/app_action";
 import {connect} from "react-redux";
 import {getPizzaria} from "../actions/pizzaria_actions";
 import {getMenuItemList} from "../actions/order_action";
+import {getCustomer} from "../actions/cutomer_action";
 
 export const menuSectionRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
 export const aboutUsRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
@@ -63,6 +64,7 @@ class MainPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
 
         this.props.getPizzaria()
         this.props.getMenuItemList()
+        this.props.getCustomer(this.props.authentication.id_token)
     }
 
 
@@ -316,7 +318,8 @@ const mapStateToProps = (state: any) : AppState => {
 const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, appActions>) => {
     return {
         getPizzaria : () => getPizzaria(dispatch),
-        getMenuItemList: () => getMenuItemList(dispatch)
+        getMenuItemList: () => getMenuItemList(dispatch),
+        getCustomer: (jwt: string) => getCustomer(dispatch, jwt)
     }
 }
 

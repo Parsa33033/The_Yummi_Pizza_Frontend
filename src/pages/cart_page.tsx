@@ -13,6 +13,8 @@ import {RouteComponentProps, withRouter} from "react-router";
 import {loadScripts} from "../config/load_scripts";
 import {Currency, LocaleState} from "../states/locale_state";
 import {SWITCH_CURRENCY} from "../actions/locale_action";
+import {CartState, OrderItemState} from "../states/order_state";
+import {SET_CART} from "../actions/order_action";
 
 
 class CartPage extends React.Component<WithTranslation & ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & RouteComponentProps> {
@@ -24,6 +26,41 @@ class CartPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
 
     switchCurrency = () => {
         this.props.switchCurrency(this.props.localeState.currency)
+    }
+
+    addToItemInCart = (orderItemState: OrderItemState) => {
+        const cartState: CartState = {
+            items:  this.props.cartState.items.map((item) => {
+                if (item.menuItem.name == orderItemState.menuItem.name) {
+                    if (item.number < 100) {
+                        item.number = item.number + 1
+                    }
+                }
+                return item
+            })
+        }
+        this.props.setCartState(cartState)
+    }
+
+    deductItemFromCart = (orderItemState: OrderItemState) => {
+        const cartState: CartState = {
+            items:  this.props.cartState.items.map((item) => {
+                if (item.menuItem.name == orderItemState.menuItem.name) {
+                    if (item.number > 1) {
+                        item.number = item.number - 1
+                    }
+                }
+                return item
+            })
+        }
+        this.props.setCartState(cartState)
+    }
+
+    deleteItemFromCart = (orderItemState: OrderItemState) => {
+        const cartState: CartState = {
+            items:  this.props.cartState.items.filter((item) => item.menuItem.name != orderItemState.menuItem.name)
+        }
+        this.props.setCartState(cartState)
     }
 
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
@@ -39,7 +76,7 @@ class CartPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                            location={this.props.location}
                            history={this.props.history}/>
 
-                <Breadcrumb title={this.t("profile.page") + " " + this.props.userState.login}/>
+                <Breadcrumb title={"Cart"}/>
 
 
 
@@ -129,15 +166,15 @@ class CartPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                                     </div>
                                                     <div className="col-4 col-sm-4 col-md-4">
                                                         <div className="quantity">
-                                                            <input type="button" value="+" className="plus" style={{zIndex: 1}} onClick={() => orderItem.number = orderItem.number + 1}/>
-                                                            <input type="number" step="1" max="99" min="1" value="1" title="Qty"
+                                                            <input type="button" value="+" className="plus" style={{zIndex: 1}} onClick={() => this.addToItemInCart(orderItem)}/>
+                                                            <input type="number" step="1" max="99" min="1" value={orderItem.number} title="Qty"
                                                                    className="qty"
                                                                    size={4}/>
-                                                            <input type="button" value="-" className="minus" style={{zIndex: 1}}  onClick={() => orderItem.number = orderItem.number - 1}/>
+                                                            <input type="button" value="-" className="minus" style={{zIndex: 1}}  onClick={() => this.deductItemFromCart(orderItem)}/>
                                                         </div>
                                                     </div>
                                                     <div className="col-2 col-sm-2 col-md-2 text-right">
-                                                        <button type="button" className="btn btn-outline-danger btn-xs">
+                                                        <button type="button" className="btn btn-outline-danger btn-xs" onClick={() => this.deleteItemFromCart(orderItem)}>
                                                             <i className="fa fa-trash" aria-hidden="true"></i>
                                                         </button>
                                                     </div>
@@ -154,9 +191,24 @@ class CartPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                         <div className="card-footer">
 
                             <div className="pull-right" style={{margin: "10px"}}>
-                                <a href="" className="btn btn-success pull-right">Checkout</a>
+                                <a  className="btn btn-success pull-right" onClick={() => this.props.cartState.items.length >= 1 ? this.props.history.push("/checkout") : null}>Checkout</a>
                                 <div className="pull-right" style={{margin: "5px"}}>
-                                    Total price: <b>50.00€</b>
+                                    {
+                                        Currency[this.props.localeState.currency].toString() == Currency[Currency.DOLLOR] ?
+                                            this.props.cartState.items.length >= 1 ?
+                                                <h4 style={{marginRight: 5}}>
+                                                    Total price: <b>$ {this.props.cartState.items.map((item) => item.menuItem.priceDollor * item.number).reduce((oldVal, newVal) => oldVal + newVal)}</b>
+                                                </h4>
+                                                :
+                                                <div/>
+                                                :
+                                            this.props.cartState.items.length >= 1 ?
+                                                <h4 style={{marginRight: 5}}>
+                                                    Total price: <b>€ {this.props.cartState.items.map((item) => item.menuItem.priceEuro * item.number).reduce((oldVal, newVal) => oldVal + newVal)}</b>
+                                                </h4>
+                                                :
+                                                <div/>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -192,6 +244,12 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, appActions>) => {
             dispatch({
                 type: SWITCH_CURRENCY,
                 payload: localState
+            })
+        },
+        setCartState: (cartState: CartState) => {
+            dispatch({
+                type: SET_CART,
+                payload: cartState
             })
         }
     }

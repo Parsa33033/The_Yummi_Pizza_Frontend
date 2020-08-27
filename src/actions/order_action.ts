@@ -7,6 +7,7 @@ import {menu_item_list_url} from "../config/urls";
 
 
 export const ADD_TO_CART = "add_to_cart"
+export const SET_CART = "set_cart"
 export const SET_MENU_ITEM_LIST = "set_menu_item_list"
 
 interface AddToCartAction {
@@ -14,12 +15,18 @@ interface AddToCartAction {
     payload: CartState
 }
 
+interface SetCartAction {
+    type: typeof SET_CART,
+    payload: CartState
+}
+
+
 interface SetMenuItemListAction {
     type: typeof SET_MENU_ITEM_LIST,
     payload: MenuItemListState
 }
 
-export type orderActions = AddToCartAction | SetMenuItemListAction;
+export type orderActions = AddToCartAction | SetMenuItemListAction | SetCartAction;
 
 
 export const getMenuItemList = async (dispatch: ThunkDispatch<{}, {}, appActions>) => {

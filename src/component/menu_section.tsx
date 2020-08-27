@@ -30,7 +30,7 @@ class MenuSection extends React.Component<WithTranslation & MenuSectionProps & R
             menuItem: menuItem,
             number: 1,
             orderId: -1,
-            menuItemId: -1,
+            menuItemId: menuItem.id,
             id: -1
         }
         const orderItemState: OrderItemState[] = this.props.cartState.items

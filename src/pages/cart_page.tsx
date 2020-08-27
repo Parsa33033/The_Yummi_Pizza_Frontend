@@ -191,7 +191,7 @@ class CartPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                         <div className="card-footer">
 
                             <div className="pull-right" style={{margin: "10px"}}>
-                                <a  className="btn btn-success pull-right" onClick={() => this.props.cartState.items.length >= 1 ? this.props.history.push("/checkout") : null}>Checkout</a>
+                                <a  className="btn btn-success pull-right" style={{color: "white"}} onClick={() => this.props.cartState.items.length >= 1 ? this.props.history.push("/checkout") : null}>Checkout</a>
                                 <div className="pull-right" style={{margin: "5px"}}>
                                     {
                                         Currency[this.props.localeState.currency].toString() == Currency[Currency.DOLLOR] ?

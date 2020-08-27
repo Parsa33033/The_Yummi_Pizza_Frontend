@@ -3,6 +3,7 @@ import {MenuItemDTO} from "../dto/menu_item_dto";
 import {MenuItemState, menuItemStateInit} from "./menu_item_state";
 import {Order} from "../models/order";
 import {OrderItemDTO} from "../dto/order_item_dto";
+import {AddressState, addressStateInit} from "./address_state";
 
 
 export const orderItemStateInit: OrderItemState = {
@@ -25,7 +26,8 @@ export const orderStateInit: OrderState = {
     id: 0,
     items: [],
     pizzariaId: 0,
-    totalPrice: 0
+    totalPrice: 0,
+    address: addressStateInit
 }
 
 export const orderListStateInit: OrderListState = {
@@ -42,6 +44,7 @@ export interface CartState {
 
 export interface OrderState extends Order{
     items: OrderItemState[]
+    address: AddressState
 }
 
 export interface OrderListState {

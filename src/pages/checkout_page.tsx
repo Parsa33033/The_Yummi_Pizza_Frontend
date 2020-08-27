@@ -13,6 +13,10 @@ import {RouteComponentProps, withRouter} from "react-router";
 import {loadScripts} from "../config/load_scripts";
 import {Currency, LocaleState} from "../states/locale_state";
 import {SWITCH_CURRENCY} from "../actions/locale_action";
+import {ChangeEvent} from "react";
+import {OrderDTO} from "../dto/order_dto";
+import {order} from "../actions/order_action";
+import {AddressDTO} from "../dto/address_dto";
 
 interface CheckoutPageState {
     firstName: string,
@@ -31,7 +35,9 @@ interface CheckoutPageState {
 class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & RouteComponentProps, CheckoutPageState> {
     t = this.props.t
     customer = this.props.customerState
-    constructor(props: WithTranslation & ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & RouteComponentProps,) {
+    totalPrice = this.props.cartState.items.length >= 1 ? this.props.cartState.items.map((item) => item.menuItem.priceEuro * item.number).reduce((oldVal, newVal) => oldVal + newVal) : 0
+
+    constructor(props: WithTranslation & ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & RouteComponentProps) {
         super(props);
         this.state = {
             firstName: this.customer.firstName,
@@ -50,9 +56,73 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
         loadScripts()
     }
 
+    order = () => {
+        if (this.props.cartState.items.length >= 1) {
+            const address: AddressDTO = {
+                phoneNumber: this.state.phoneNumber,
+                country: this.state.country,
+                city: this.state.city,
+                address2: this.state.address2,
+                address1: this.state.address1,
+                state: this.state.state,
+                id: -1,
+            }
+            const orderDTO: OrderDTO = {
+                pizzariaId: 1,
+                totalPrice: this.totalPrice,
+                id: -1,
+                delivered: false,
+                date: new Date(Date.now()),
+                customerId: this.customer.id,
+                addressId: -1,
+                address: address,
+                items: this.props.cartState.items
+            }
+            this.props.order(orderDTO)
+        }
+    }
+
     switchCurrency = () => {
         this.props.switchCurrency(this.props.localeState.currency)
     }
+
+
+    handleFirstName = (firstName: ChangeEvent<HTMLInputElement>) => {
+        this.setState({firstName: firstName.target.value});
+    }
+
+    handleLastName = (lastName: ChangeEvent<HTMLInputElement>) => {
+        this.setState({lastName: lastName.target.value});
+    }
+
+    handleEmail = (email: ChangeEvent<HTMLInputElement>) => {
+        this.setState({email: email.target.value});
+    }
+
+    handleCountry = (country: ChangeEvent<HTMLInputElement>) => {
+        this.setState({country: country.target.value});
+    }
+
+    handleState = (state: ChangeEvent<HTMLInputElement>) => {
+        this.setState({state: state.target.value});
+    }
+
+    handleCity = (city: ChangeEvent<HTMLInputElement>) => {
+        this.setState({city: city.target.value});
+    }
+
+    handleAddress1 = (address1: ChangeEvent<HTMLInputElement>) => {
+        this.setState({address1: address1.target.value});
+    }
+
+    handleAddress2 = (address2: ChangeEvent<HTMLInputElement>) => {
+        this.setState({address2: address2.target.value});
+    }
+
+    handlePhoneNumber = (phoneNumber: ChangeEvent<HTMLInputElement>) => {
+        this.setState({phoneNumber: phoneNumber.target.value});
+    }
+
 
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
         return(
@@ -99,7 +169,7 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
                                     <span>Total </span>
                                     {
                                         this.props.cartState.items.length >= 1 ?
-                                            <strong>{Currency[this.props.localeState.currency] == Currency[Currency.DOLLOR] ? <small>$</small> : <small>€</small>} {this.props.cartState.items.map((item) => item.menuItem.priceEuro * item.number).reduce((oldVal, newVal) => oldVal + newVal)}</strong>
+                                            <strong>{Currency[this.props.localeState.currency] == Currency[Currency.DOLLOR] ? <small>$</small> : <small>€</small>} {this.totalPrice}</strong>
                                             :
                                             <div/>
                                     }
@@ -114,7 +184,7 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
                                     <div className="col-md-6 mb-3">
                                         <label className=" float-left" htmlFor="firstName">First name</label>
                                         <input type="text" className="form-control" id="firstName" placeholder=""
-                                               value="" required={true}/>
+                                               value={this.state.firstName} required={true} onChange={this.handleFirstName}/>
                                             <div className="invalid-feedback">
                                                 Valid first name is required.
                                             </div>
@@ -122,7 +192,7 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
                                     <div className="col-md-6 mb-3">
                                         <label className=" float-left"  htmlFor="lastName">Last name</label>
                                         <input type="text" className="form-control" id="lastName" placeholder=""
-                                               value="" required={true}/>
+                                               value={this.state.lastName} required={true} onChange={this.handleLastName} />
                                             <div className="invalid-feedback">
                                                 Valid last name is required.
                                             </div>
@@ -136,7 +206,7 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
                                             <span className="input-group-text">@</span>
                                         </div>
                                         <input style={{paddingLeft: 8}} type="text" className="form-control" id="email" placeholder=""
-                                               required={true}/>
+                                               required={true}  value={this.state.email} onChange={this.handleEmail}/>
                                             <div className="invalid-feedback" style={{width: "100%"}}>
                                                 Your username is required.
                                             </div>
@@ -146,7 +216,7 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
                                 <div className="mb-3">
                                     <label className=" float-left" htmlFor="phone-number">Phone Number</label>
                                     <input type="text" className="form-control" id="phone-number" placeholder=""
-                                           required={true}/>
+                                           required={true} value={this.state.phoneNumber} onChange={this.handlePhoneNumber}/>
                                     <div className="invalid-feedback">
                                         Please enter your phone number.
                                     </div>
@@ -155,7 +225,7 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
                                 <div className="mb-3">
                                     <label className=" float-left" htmlFor="country">Country</label>
                                     <input type="text" className="form-control" id="country" placeholder=""
-                                           required={true}/>
+                                           required={true}  value={this.state.country} onChange={this.handleCountry}/>
                                     <div className="invalid-feedback">
                                         Please enter your country.
                                     </div>
@@ -164,7 +234,7 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
                                 <div className="mb-3">
                                     <label className=" float-left" htmlFor="state">State</label>
                                     <input type="text" className="form-control" id="state" placeholder=""
-                                           required={true}/>
+                                           required={true} value={this.state.state} onChange={this.handleState}/>
                                     <div className="invalid-feedback">
                                         Please enter your state.
                                     </div>
@@ -173,7 +243,7 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
                                 <div className="mb-3">
                                     <label className=" float-left" htmlFor="city">City</label>
                                     <input type="text" className="form-control" id="city" placeholder=""
-                                           required={true}/>
+                                           required={true}  value={this.state.city} onChange={this.handleCity}/>
                                     <div className="invalid-feedback">
                                         Please enter your city.
                                     </div>
@@ -182,7 +252,7 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
                                 <div className="mb-3">
                                     <label className=" float-left" htmlFor="address1">Address 1</label>
                                     <input type="text" className="form-control" id="address1" placeholder=""
-                                           required={true}/>
+                                           required={true}  value={this.state.address1} onChange={this.handleAddress1}/>
                                         <div className="invalid-feedback">
                                             Please enter your address.
                                         </div>
@@ -191,7 +261,7 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
                                 <div className="mb-3">
                                     <label className=" float-left" htmlFor="address2">Address 2</label>
                                     <input type="text" className="form-control" id="address2" placeholder=""
-                                           required={true}/>
+                                           required={true} value={this.state.address2} onChange={this.handleAddress2}/>
                                     <div className="invalid-feedback">
                                         Please enter your address.
                                     </div>
@@ -279,12 +349,13 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
                                                     </div>
                                             </div>
                                         </div>
-                                        <hr className="mb-4"/>
-                                            <button className="btn btn-primary btn-lg btn-block" type="submit">Continue
-                                                Order
-                                            </button>
-                                <br/><br/><br/>
+
                             </form>
+                            <hr className="mb-4"/>
+                            <button className="btn btn-primary btn-lg btn-block" onClick={this.order}>Continue
+                                Order
+                            </button>
+                            <br/><br/><br/>
                         </div>
                     </div>
 
@@ -321,6 +392,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, appActions>) => {
                 payload: localState
             })
         },
+        order: (orderDTO: OrderDTO) => order(orderDTO)
     }
 }
 

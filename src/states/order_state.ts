@@ -1,9 +1,8 @@
 import {OrderItem} from "../models/order_item";
-import {MenuItemDTO} from "../dto/menu_item_dto";
 import {MenuItemState, menuItemStateInit} from "./menu_item_state";
 import {Order} from "../models/order";
-import {OrderItemDTO} from "../dto/order_item_dto";
 import {AddressState, addressStateInit} from "./address_state";
+import {Currency} from "./locale_state";
 
 
 export const orderItemStateInit: OrderItemState = {
@@ -27,6 +26,7 @@ export const orderStateInit: OrderState = {
     items: [],
     pizzariaId: 0,
     totalPrice: 0,
+    paidIn: Currency.DOLLOR,
     address: addressStateInit
 }
 

@@ -1,3 +1,4 @@
+import {Currency} from "../states/locale_state";
 
 
 export interface Order {
@@ -6,6 +7,8 @@ export interface Order {
     date: Date,
 
     totalPrice: number,
+
+    paidIn: Currency
 
     delivered: boolean
 

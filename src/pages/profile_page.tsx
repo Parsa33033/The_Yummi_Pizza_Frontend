@@ -33,9 +33,8 @@ class ProfilePage extends React.Component<WithTranslation & ReturnType<typeof ma
                            location={this.props.location}
                            history={this.props.history}/>
 
-                <Breadcrumb title={this.t("profile.page") + " " + this.props.userState.login}/>
-
-                <h1>{this.props.userState.login}</h1>
+                <Breadcrumb title={this.t("profile.page")}/>
+                
 
                 <div className="container">
                     <div className="container bootstrap snippets bootdey">
@@ -67,7 +66,7 @@ class ProfilePage extends React.Component<WithTranslation & ReturnType<typeof ma
                                             <div className="row">
                                                 <label className="col-lg-3 control-label">{this.t("profile.email")}:</label>
                                                 <div className="col-lg-8">
-                                                    <input className="form-control" type="text" value="bootdey"/>
+                                                    <input className="form-control" type="text" value={this.props.customerState.email}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -75,7 +74,7 @@ class ProfilePage extends React.Component<WithTranslation & ReturnType<typeof ma
                                             <div className="row">
                                                 <label className="col-lg-3 control-label">{this.t("profile.firstname")}:</label>
                                                 <div className="col-lg-8">
-                                                    <input className="form-control" type="text" value=""/>
+                                                    <input className="form-control" type="text" value={this.props.customerState.firstName}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -84,7 +83,7 @@ class ProfilePage extends React.Component<WithTranslation & ReturnType<typeof ma
                                                 <label className="col-lg-3 control-label">{this.t("profile.lastname")}:</label>
                                                 <div className="col-lg-8">
                                                     <input className="form-control" type="text"
-                                                           value="janesemail@gmail.com"/>
+                                                           value=""/>
                                                 </div>
                                             </div>
                                         </div>

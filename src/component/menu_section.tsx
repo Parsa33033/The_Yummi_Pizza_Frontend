@@ -19,7 +19,20 @@ interface MenuSectionProps {
     menuSectionRef: RefObject<HTMLDivElement>
 }
 
-class MenuSection extends React.Component<WithTranslation & MenuSectionProps & ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>> {
+interface MenuSectionState {
+    showToast: boolean,
+}
+
+class MenuSection extends React.Component<WithTranslation & MenuSectionProps & ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>, MenuSectionState> {
+    t = this.props.t
+    constructor(props: WithTranslation & MenuSectionProps & ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>) {
+        super(props);
+        this.state = {
+            showToast: false
+        }
+
+    }
+
 
     switchCurrency = () => {
         this.props.switchCurrency(this.props.localeState.currency)
@@ -46,6 +59,13 @@ class MenuSection extends React.Component<WithTranslation & MenuSectionProps & R
             orderItemState.push(item)
         }
         this.props.addToCart(orderItemState)
+        this.setState({
+            showToast: true
+        })
+        setTimeout(() => this.setState({
+            showToast: false
+        }), 500)
+
     }
 
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
@@ -382,6 +402,9 @@ class MenuSection extends React.Component<WithTranslation & MenuSectionProps & R
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div className="alert alert-success registration-alert" style={{position:"fixed", top: 100, left: 100, width: 300, display: this.state.showToast? "block" : "none"}} role="alert">
+                            <strong>Added to Cart</strong>
                         </div>
                     </div>
                 </section>

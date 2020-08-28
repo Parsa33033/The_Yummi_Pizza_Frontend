@@ -28,6 +28,8 @@ interface CheckoutPageState {
     city: string,
     address1: string,
     address2: string,
+    errorMessage: string,
+    done: boolean
 }
 
 
@@ -48,7 +50,9 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
             city: this.customer.address.city,
             country: this.customer.address.country,
             phoneNumber: this.customer.address.phoneNumber,
-            state: this.customer.address.state
+            state: this.customer.address.state,
+            done: false,
+            errorMessage: ""
         }
     }
 
@@ -56,7 +60,7 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
         loadScripts()
     }
 
-    order = () => {
+    order = async () => {
         if (this.props.cartState.items.length >= 1) {
             const address: AddressDTO = {
                 phoneNumber: this.state.phoneNumber,
@@ -70,6 +74,7 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
             const orderDTO: OrderDTO = {
                 pizzariaId: 1,
                 totalPrice: this.totalPrice,
+                paidIn: this.props.localeState.currency,
                 id: -1,
                 delivered: false,
                 date: new Date(Date.now()),
@@ -78,7 +83,17 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
                 address: address,
                 items: this.props.cartState.items
             }
-            this.props.order(orderDTO)
+            var i = await this.props.order(orderDTO)
+            if (i == 1) {
+                this.setState({
+                    errorMessage: "",
+                    done: true
+                })
+            } else {
+                this.setState({
+                    errorMessage: "failure"
+                })
+            }
         }
     }
 
@@ -352,14 +367,33 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
 
                             </form>
                             <hr className="mb-4"/>
-                            <button className="btn btn-primary btn-lg btn-block" onClick={this.order}>Continue
+                            <h4 style={{color: "red"}}>{this.state.errorMessage}</h4>
+                            <button className="btn btn-primary btn-lg btn-block" data-toggle="modal" onClick={this.order}>Continue
                                 Order
                             </button>
+
                             <br/><br/><br/>
                         </div>
                     </div>
 
                 </div>
+
+                {
+                    this.state.done ?
+                        <div>
+                            <div style={{backgroundColor: "gray", opacity: 0.7, position: "fixed", top: 0, right: 0, left: 0, bottom: 0, zIndex: 10}}/>
+                            <div className="alert alert-success" style={{position: "fixed", top: "30%", left: "25%", width: "50%", zIndex: 10}} role="alert">
+                                <h4 className="alert-heading">Well done!</h4>
+                                <p>Your order has been done</p>
+                                <hr/>
+                                <p className="mb-0"><button type="button" className="btn btn-secondary" onClick={() => this.props.history.replace("/")} >
+                                    Redirect to your Home page
+                                </button></p>
+                            </div>
+                        </div>
+                        :
+                    <div/>
+                }
 
                 <Footer aboutUsRef={aboutUsRef}/>
             </div>

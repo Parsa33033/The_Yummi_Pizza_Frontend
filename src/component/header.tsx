@@ -33,13 +33,18 @@ class Header extends React.Component<WithTranslation & HeaderProps & ReturnType<
     }
 
     loginAppear = () => {
-        if (this.props.signinRef.current)
+        if (this.props.signinRef.current && this.props.signupRef.current) {
             this.props.signinRef.current.setAttribute("style", "display:block;position: fixed; top: 0; right: 0; left: 0; bottom: 0; z-index: 1000;");
+            this.props.signupRef.current.setAttribute("style", "display:none;position: fixed; top: 0; right: 0; left: 0; bottom: 0; z-index: 1000;");
+        }
+
     }
 
     registrationAppear = () => {
-        if (this.props.signupRef.current)
+        if (this.props.signupRef.current && this.props.signinRef.current) {
             this.props.signupRef.current.setAttribute("style", "display:block;position: fixed; top: 0; right: 0; left: 0; bottom: 0; z-index: 1000;");
+            this.props.signinRef.current.setAttribute("style", "display:none;position: fixed; top: 0; right: 0; left: 0; bottom: 0; z-index: 1000;");
+        }
 
     }
 

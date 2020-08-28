@@ -59,12 +59,13 @@ export const signupRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
 
 class MainPage extends React.Component<WithTranslation & ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & RouteComponentProps> {
 
-    componentWillMount = () => {
+    componentWillMount = async () => {
         loadScripts()
 
         this.props.getPizzaria()
         this.props.getMenuItemList()
         this.props.getCustomer(this.props.authentication.id_token)
+
     }
 
 

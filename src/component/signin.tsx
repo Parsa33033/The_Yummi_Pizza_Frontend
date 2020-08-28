@@ -9,6 +9,8 @@ import {connect} from "react-redux";
 import {ChangeEvent} from "react";
 import {store} from "../config/store";
 import validator from "validator";
+import {getCustomer} from "../actions/cutomer_action";
+import {AuthenticationState} from "../states/authentication_state";
 
 interface SigninProps {
     signinRef: RefObject<HTMLDivElement>
@@ -23,11 +25,11 @@ interface SigninStates {
     message: string
 }
 
-class Signin extends React.Component<WithTranslation & SigninProps & ReturnType<typeof mapDispatchToProps>, SigninStates> {
+class Signin extends React.Component<WithTranslation & SigninProps & ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>, SigninStates> {
 
     t = this.props.t
 
-    constructor(props: WithTranslation & SigninProps & ReturnType<typeof mapDispatchToProps> ) {
+    constructor(props: WithTranslation & SigninProps & ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>) {
         super(props)
 
         this.state = {
@@ -54,6 +56,7 @@ class Signin extends React.Component<WithTranslation & SigninProps & ReturnType<
                 if (i == 1) {
                     console.log("logged in!")
                     this.loginDisappear()
+                    this.props.getCustomer(this.props.id_token)
                 } else {
                     this.setState({
                         showAlert: true
@@ -233,10 +236,18 @@ class Signin extends React.Component<WithTranslation & SigninProps & ReturnType<
     }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, appActions>) => {
+const mapStateToProps = (state: any) : AuthenticationState => {
     return {
-        loginUser: (loginDTO: LoginDTO) => loginUser(dispatch, loginDTO),
+        id_token: state.authentication.id_token,
+        authenticated: true
     }
 }
 
-export default connect(null, mapDispatchToProps)(withTranslation()(Signin))
+const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, appActions>) => {
+    return {
+        loginUser: (loginDTO: LoginDTO) => loginUser(dispatch, loginDTO),
+        getCustomer: (jwt: string) => getCustomer(dispatch, jwt)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Signin))

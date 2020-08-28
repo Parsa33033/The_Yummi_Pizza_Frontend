@@ -108,7 +108,7 @@ class Header extends React.Component<WithTranslation & HeaderProps & ReturnType<
                                                     <div className="dropdown-menu" ref={this.dropdownMenuRef} style={{display: "none"}} id="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                         <a className="dropdown-item" style={{cursor: "pointer"}} onClick={() => this.props.history.push("/profile")}><i style={{paddingRight: 4}}
                                                             className="fas fa-user"></i>   Profile</a>
-                                                        <a className="dropdown-item" href="#"><i style={{paddingRight: 4}}
+                                                        <a className="dropdown-item" style={{cursor: "pointer"}} onClick={() => this.props.history.push("/orders")}><i style={{paddingRight: 4}}
                                                             className="fa fa-list-alt" aria-hidden="true"></i>
                                                                Orders</a>
                                                         <a className="dropdown-item" href="#"><i style={{paddingRight: 4}}
@@ -120,33 +120,47 @@ class Header extends React.Component<WithTranslation & HeaderProps & ReturnType<
                                             <div style={{padding: 10, margin: "0 auto", width: "100%", zIndex:100}}>
 
                                                 <div className="dropdown">
-                                                    <button className="btn btn-secondary dropdown-toggle" type="button"
-                                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                    <button className="btn btn-secondary " type="button"
+                                                            onClick={this.toggleMenu} id="dropdownMenuButton"
                                                             aria-expanded="false">
-                                                        <h6>{this.props.userState.login} - Manager</h6>
+                                                        <h6>{this.props.userState.login} - <small>Manager</small></h6>
+                                                        <i className="fas fa-angle-down"></i>
                                                     </button>
-                                                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a className="dropdown-item" href="#">Action</a>
-                                                        <a className="dropdown-item" href="#">Another action</a>
-                                                        <a className="dropdown-item" href="#">Something else here</a>
+                                                    <div className="dropdown-menu" ref={this.dropdownMenuRef} style={{display: "none"}} id="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a className="dropdown-item" style={{cursor: "pointer"}} onClick={() => this.props.history.push("/profile")}><i style={{paddingRight: 4}}
+                                                                                                                                                                        className="fas fa-user"></i>   Profile</a>
+                                                        <a className="dropdown-item" style={{cursor: "pointer"}} onClick={() => this.props.history.push("/orders")}><i style={{paddingRight: 4}}
+                                                                                                 className="fa fa-list-alt" aria-hidden="true"></i>
+                                                            Orders</a>
+                                                        <a className="dropdown-item" style={{cursor: "pointer"}} onClick={() => this.props.history.push("/menu")}><i style={{paddingRight: 4}}
+                                                                                                                                                                       className="fa fa-list-alt" aria-hidden="true"></i>
+                                                            Menu</a>
+                                                        <a className="dropdown-item" href="#"><i style={{paddingRight: 4}}
+                                                                                                 className="fas fa-sign-out-alt"></i>   Logout</a>
                                                     </div>
                                                 </div>
                                             </div>
 
                                 }
 
-                                <li className="nav-item"><a style={{cursor: "pointer"}} onClick={() => this.props.history.push("/cart")} className="nav-link" >
-                                    <i style={{height: 20, width: 40}}
-                                       className="fas fa-shopping-cart">
-                                    {
-                                        this.props.cartState.items.length >= 1 ?
-                                            <span className="badge badge-light" style={{position: "relative", top: 0, right: 0}}>{this.props.cartState.items.map((orderItem) => {return orderItem.number}).reduce((oldVal, newVal)=> oldVal + newVal)}</span>
-                                            :
-                                            <div/>
-                                    }
-                                    </i>
-                                    </a>
-                                </li>
+                                {
+                                    !this.props.userState.authorities.includes(Authority[Authority.ROLE_MANAGER]) ?
+                                        <li className="nav-item"><a style={{cursor: "pointer"}} onClick={() => this.props.history.push("/cart")} className="nav-link" >
+                                            <i style={{height: 20, width: 40}}
+                                               className="fas fa-shopping-cart">
+                                                {
+                                                    this.props.cartState.items.length >= 1 ?
+                                                        <span className="badge badge-light" style={{position: "relative", top: 0, right: 0}}>{this.props.cartState.items.map((orderItem) => {return orderItem.number}).reduce((oldVal, newVal)=> oldVal + newVal)}</span>
+                                                        :
+                                                        <div/>
+                                                }
+                                            </i>
+                                        </a>
+                                        </li>
+                                        :
+                                        <div/>
+                                }
+
                             </ul>
                         </div>
                     </div>
@@ -165,7 +179,8 @@ const mapStateToProps = (state: any) : AppState => {
         managerState: state.managerState,
         menuItemListState: state.menuItemListState,
         pizzariaState: state.pizzariaState,
-        localeState: state.localeState
+        localeState: state.localeState,
+        orderListState: state.orderListState
     }
 }
 

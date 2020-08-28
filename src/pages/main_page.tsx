@@ -312,7 +312,8 @@ const mapStateToProps = (state: any) : AppState => {
         managerState: state.managerState,
         menuItemListState: state.menuItemListState,
         pizzariaState: state.pizzariaState,
-        localeState: state.localeState
+        localeState: state.localeState,
+        orderListState: state.orderListState
     }
 }
 

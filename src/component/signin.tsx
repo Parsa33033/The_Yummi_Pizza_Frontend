@@ -11,6 +11,9 @@ import {store} from "../config/store";
 import validator from "validator";
 import {getCustomer} from "../actions/cutomer_action";
 import {AuthenticationState} from "../states/authentication_state";
+import {AppState} from "../states/app_state";
+import {Authority} from "../models/user";
+import {getManager} from "../actions/manager_action";
 
 interface SigninProps {
     signinRef: RefObject<HTMLDivElement>
@@ -46,7 +49,7 @@ class Signin extends React.Component<WithTranslation & SigninProps & ReturnType<
     loginUser = async () => {
         var email = this.state.email.toLowerCase().trim()
         if (validator.isEmail(email)) {
-            if (validator.isAlphanumeric(this.state.password) && this.state.password.length > 7) {
+            if (validator.isAlphanumeric(this.state.password) && this.state.password.length > 6) {
                 const loginDTO: LoginDTO = {
                     username: email,
                     password: this.state.password,
@@ -55,17 +58,28 @@ class Signin extends React.Component<WithTranslation & SigninProps & ReturnType<
                 var i = await this.props.loginUser(loginDTO)
                 if (i == 1) {
                     console.log("logged in!")
-                    this.loginDisappear()
-                    this.props.getCustomer(this.props.id_token)
+                    if(this.props.userState.authorities.includes(Authority[Authority.ROLE_USER])) {
+                        i = await this.props.getCustomer(this.props.authentication.id_token)
+                    } else {
+                        i = await this.props.getManager(this.props.authentication.id_token)
+                    }
+                    if (i != 1) {
+                        this.setState({
+                            message: "there was a problem fetching your profile info!"
+                        })
+                    } else {
+                        this.setState({
+                            message: ""
+                        })
+                        this.loginDisappear()
+                    }
                 } else {
                     this.setState({
-                        showAlert: true
+                        showAlert: true,
+                        message: "there was a problem with login. please make sure you entered your credentials right!"
                     })
                     console.log("login error!")
                 }
-                this.setState({
-                    message: this.t("")
-                })
             } else {
                 this.setState({
                     message: this.t("login.pass-invalid")
@@ -205,13 +219,6 @@ class Signin extends React.Component<WithTranslation & SigninProps & ReturnType<
                                             </div>
                                         </div>
 
-                                        {
-                                            this.state.showAlert ?
-                                                <div style={{textAlign: "left", color: "red", padding: 20}}>there was a problem with login. please make sure you entered your credentials right!</div>
-                                                :
-                                                <div/>
-                                        }
-
                                         <div >
                                             <h6 style={{color: "red", textAlign: "left"}}>
                                                 {
@@ -236,17 +243,24 @@ class Signin extends React.Component<WithTranslation & SigninProps & ReturnType<
     }
 }
 
-const mapStateToProps = (state: any) : AuthenticationState => {
+const mapStateToProps = (state: any) : AppState => {
     return {
-        id_token: state.authentication.id_token,
-        authenticated: true
+        userState: state.userState,
+        authentication: state.authentication,
+        cartState: state.cartState,
+        customerState: state.customerState,
+        managerState: state.managerState,
+        menuItemListState: state.menuItemListState,
+        pizzariaState: state.pizzariaState,
+        localeState: state.localeState,
+        orderListState: state.orderListState
     }
 }
-
 const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, appActions>) => {
     return {
         loginUser: (loginDTO: LoginDTO) => loginUser(dispatch, loginDTO),
-        getCustomer: (jwt: string) => getCustomer(dispatch, jwt)
+        getCustomer: (jwt: string) => getCustomer(dispatch, jwt),
+        getManager: (jwt: string) => getManager(dispatch, jwt)
     }
 }
 

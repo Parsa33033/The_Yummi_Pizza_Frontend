@@ -14,7 +14,7 @@ export const customerStateInit: CustomerState = {
     imageContentType: "",
     lastName: "",
     mobileNumber: "",
-    orders: [orderStateInit],
+    orders: [],
     username: "",
 }
 

@@ -15,8 +15,9 @@ import {Currency, LocaleState} from "../states/locale_state";
 import {SWITCH_CURRENCY} from "../actions/locale_action";
 import {ChangeEvent} from "react";
 import {OrderDTO} from "../dto/order_dto";
-import {order} from "../actions/order_action";
+import {order, SET_CART} from "../actions/order_action";
 import {AddressDTO} from "../dto/address_dto";
+import {CartState} from "../states/order_state";
 
 interface CheckoutPageState {
     firstName: string,
@@ -87,8 +88,12 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
             if (i == 1) {
                 this.setState({
                     errorMessage: "",
-                    done: true
+                    done: true,
                 })
+                const emptyCart: CartState = {
+                    items: []
+                }
+                this.props.emptyCart(emptyCart)
             } else {
                 this.setState({
                     errorMessage: "failure"
@@ -173,7 +178,7 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
                                             <li className="list-group-item d-flex justify-content-between lh-condensed">
                                                 <div>
                                                     <h6 className="my-0">{item.menuItem.name}</h6>
-                                                    <small className="text-muted">Number: {item.number}</small>
+                                                    <small className="text-muted float-left">Number: {item.number}</small>
                                                 </div>
                                                 <span className="text-muted">{Currency[this.props.localeState.currency] == Currency[Currency.DOLLOR] ? <small>$</small> : <small>€</small>} {item.number * (Currency[this.props.localeState.currency] == Currency[Currency.DOLLOR] ? item.menuItem.priceDollor : item.menuItem.priceEuro)}</span>
                                             </li>
@@ -410,7 +415,8 @@ const mapStateToProps = (state: any) : AppState => {
         managerState: state.managerState,
         menuItemListState: state.menuItemListState,
         pizzariaState: state.pizzariaState,
-        localeState: state.localeState
+        localeState: state.localeState,
+        orderListState: state.orderListState
     }
 }
 
@@ -426,7 +432,13 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, appActions>) => {
                 payload: localState
             })
         },
-        order: (orderDTO: OrderDTO) => order(orderDTO)
+        order: (orderDTO: OrderDTO) => order(orderDTO),
+        emptyCart: (cartState: CartState) => {
+            dispatch({
+                type: SET_CART,
+                payload: cartState
+            })
+        }
     }
 }
 

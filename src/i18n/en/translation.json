@@ -46,7 +46,8 @@
     "state" : "State",
     "city": "City",
     "address1": "address1",
-    "address2": "address2"
+    "address2": "address2",
+    "staff": "Staff Number"
   },
   "message": {
     "email-invalid": "the email you entered is not valid!",

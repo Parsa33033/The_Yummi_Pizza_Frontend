@@ -7,7 +7,7 @@ import {pizzariaReducer} from "../reducers/pizzaria_reducer";
 import {menuItemListReducer} from "../reducers/menu_item_reducer";
 import {managerReducer} from "../reducers/manager_reducer";
 import {customerReducer} from "../reducers/customer_reducer";
-import {cartReducer} from "../reducers/order_reducer";
+import {cartReducer, orderReducer} from "../reducers/order_reducer";
 import {localeReducer} from "../reducers/localeReducer";
 
 const reducers = combineReducers<AppState>({
@@ -18,7 +18,8 @@ const reducers = combineReducers<AppState>({
     managerState: managerReducer,
     customerState: customerReducer,
     cartState: cartReducer,
-    localeState: localeReducer
+    localeState: localeReducer,
+    orderListState: orderReducer
 })
 
 export const store = createStore(reducers, applyMiddleware(thunk))

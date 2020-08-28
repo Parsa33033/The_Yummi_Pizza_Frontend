@@ -70,8 +70,8 @@ class HeaderMin extends React.Component<WithTranslation & HeaderProps & ReturnTy
                 <nav className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
                      id="ftco-navbar">
                     <div className="container">
-                        <a className="navbar-brand" href="/"><span className="flaticon-pizza-1 mr-1"></span>Pizza<br/>
-                            <small>Delicous</small></a>
+                        <a className="navbar-brand" href="/"><span className="flaticon-pizza-1 mr-1"></span>The Yummi<br/>
+                            <small>Pizza</small></a>
                         <button className="navbar-toggler" type="button" onClick={this.openNavbar}//data-toggle="collapse" data-target="#ftco-nav"
                                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="oi oi-menu"></span> Menu
@@ -101,7 +101,7 @@ class HeaderMin extends React.Component<WithTranslation & HeaderProps & ReturnTy
                                                     <div className="dropdown-menu" ref={this.dropdownMenuRef} style={{display: "none"}} id="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                         <a className="dropdown-item" style={{cursor: "pointer"}} onClick={() => this.props.history.push("/profile")}><i style={{paddingRight: 4}}
                                                                                                                                                                         className="fas fa-user"></i>   Profile</a>
-                                                        <a className="dropdown-item" href="#"><i style={{paddingRight: 4}}
+                                                        <a className="dropdown-item" style={{cursor: "pointer"}} onClick={() => this.props.history.push("/orders")}><i style={{paddingRight: 4}}
                                                                                                  className="fa fa-list-alt" aria-hidden="true"></i>
                                                             Orders</a>
                                                         <a className="dropdown-item" href="#"><i style={{paddingRight: 4}}
@@ -122,7 +122,7 @@ class HeaderMin extends React.Component<WithTranslation & HeaderProps & ReturnTy
                                                     <div className="dropdown-menu" ref={this.dropdownMenuRef} style={{display: "none"}} id="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                         <a className="dropdown-item" style={{cursor: "pointer"}} onClick={() => this.props.history.push("/profile")}><i style={{paddingRight: 4}}
                                                                                                                                                                         className="fas fa-user"></i>   Profile</a>
-                                                        <a className="dropdown-item" href="#"><i style={{paddingRight: 4}}
+                                                        <a className="dropdown-item" style={{cursor: "pointer"}} onClick={() => this.props.history.push("/orders")}><i style={{paddingRight: 4}}
                                                                                                  className="fa fa-list-alt" aria-hidden="true"></i>
                                                             Orders</a>
                                                         <a className="dropdown-item" href="#"><i style={{paddingRight: 4}}
@@ -135,6 +135,24 @@ class HeaderMin extends React.Component<WithTranslation & HeaderProps & ReturnTy
 
                                 {/*<li className="nav-item"><a style={{cursor: "pointer"}} className="nav-link" ><i style={{height: 40, width: 40}}*/}
                                 {/*                                                                                 className="fas fa-shopping-cart"><span className="badge badge-light" style={{position: "relative", top: 0, right: 0}}>9</span></i></a> </li>*/}
+
+                                {
+                                    !this.props.userState.authorities.includes(Authority[Authority.ROLE_MANAGER]) ?
+                                        <li className="nav-item"><a style={{cursor: "pointer"}} onClick={() => this.props.history.push("/cart")} className="nav-link" >
+                                            <i style={{height: 20, width: 40}}
+                                               className="fas fa-shopping-cart">
+                                                {
+                                                    this.props.cartState.items.length >= 1 ?
+                                                        <span className="badge badge-light" style={{position: "relative", top: 0, right: 0}}>{this.props.cartState.items.map((orderItem) => {return orderItem.number}).reduce((oldVal, newVal)=> oldVal + newVal)}</span>
+                                                        :
+                                                        <div/>
+                                                }
+                                            </i>
+                                        </a>
+                                        </li>
+                                        :
+                                        <div/>
+                                }
                             </ul>
                         </div>
                     </div>
@@ -153,7 +171,8 @@ const mapStateToProps = (state: any) : AppState => {
         managerState: state.managerState,
         menuItemListState: state.menuItemListState,
         pizzariaState: state.pizzariaState,
-        localeState: state.localeState
+        localeState: state.localeState,
+        orderListState: state.orderListState
     }
 }
 

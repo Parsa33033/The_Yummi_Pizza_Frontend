@@ -5,6 +5,7 @@ import {customer_message_url, customer_url} from "../config/urls";
 import {async} from "q";
 import {ThunkDispatch} from "redux-thunk";
 import {appActions} from "./app_action";
+import {CustomerDTO} from "../dto/customer_dto";
 
 export const SET_CUSTOMER = "set_customer"
 
@@ -50,5 +51,27 @@ export const getCustomer = async (dispatch: ThunkDispatch<{}, {}, appActions>, j
         return 0
     }).catch((e) => {
         return 0
+    })
+}
+
+
+export const updateCustomer = async (dispatch: ThunkDispatch<{}, {}, appActions>, jwt: string, customerDTO: CustomerDTO) => {
+    const config: AxiosRequestConfig = {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + jwt
+        }
+    }
+    return await axios.put(customer_url, JSON.stringify(customerDTO), config).then((response) => {
+        if (response.status == 200) {
+            const customerState: CustomerState = response.data
+            dispatch({
+                type: SET_CUSTOMER,
+                payload: customerState
+            })
+        }
+        return 0;
+    }).catch((e) => {
+        return 0;
     })
 }

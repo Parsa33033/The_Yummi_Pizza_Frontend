@@ -40,7 +40,13 @@
     "gender": "Gender",
     "image": "Image",
     "email": "Email",
-    "update": "Update"
+    "update": "Update",
+    "phone-number": "Phone Number",
+    "country": "Country",
+    "state" : "State",
+    "city": "City",
+    "address1": "address1",
+    "address2": "address2"
   },
   "message": {
     "email-invalid": "the email you entered is not valid!",

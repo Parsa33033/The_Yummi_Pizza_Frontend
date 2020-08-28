@@ -48,7 +48,7 @@ class HeaderMin extends React.Component<WithTranslation & HeaderProps & ReturnTy
                 <nav className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
                      id="ftco-navbar">
                     <div className="container">
-                        <a className="navbar-brand" href="index.html"><span className="flaticon-pizza-1 mr-1"></span>Pizza<br/>
+                        <a className="navbar-brand" href="/"><span className="flaticon-pizza-1 mr-1"></span>Pizza<br/>
                             <small>Delicous</small></a>
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
                                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">

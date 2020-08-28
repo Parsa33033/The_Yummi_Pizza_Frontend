@@ -58,7 +58,6 @@ export const loginUser = async (dispatch: ThunkDispatch<{}, {}, appActions>, log
                     login: userDTO.login,
                     email: userDTO.email
                 }
-                console.log(response.status + "---->" + userDTO.authorities[0])
                 dispatch({
                     type: SET_USER,
                     payload: userState

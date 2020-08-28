@@ -47,7 +47,7 @@ class Signup extends React.Component<WithTranslation & SignupProps & ReturnType<
     }
 
     registerUser = async () => {
-        var email = this.state.email
+        var email = this.state.email.toLowerCase().trim()
         if (validator.isEmail(email)) {
             if (validator.isAlphanumeric(this.state.password) && this.state.password.length > 7) {
                 if (this.state.passwordRepeat == this.state.password) {
@@ -129,7 +129,7 @@ class Signup extends React.Component<WithTranslation & SignupProps & ReturnType<
     }
 
     handleEmailChange = (email: ChangeEvent<HTMLInputElement>) => {
-        this.setState({email: email.target.value});
+        this.setState({email: email.target.value.trim()});
     }
 
     handlePasswordChange = (password: ChangeEvent<HTMLInputElement>) => {

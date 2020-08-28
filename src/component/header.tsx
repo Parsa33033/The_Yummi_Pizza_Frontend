@@ -1,6 +1,6 @@
 import {WithTranslation, withTranslation} from "react-i18next";
 import * as React from "react";
-import {RefObject} from "react";
+import {createRef, RefObject} from "react";
 import {connect} from "react-redux";
 import {AppState} from "../states/app_state";
 import {AuthenticationState} from "../states/authentication_state";
@@ -16,6 +16,9 @@ interface HeaderProps {
 }
 
 class Header extends React.Component<WithTranslation & HeaderProps & ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & RouteComponentProps> {
+
+    dropdownMenuRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
+    menuRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
 
     slideToMenuSection = () => {
         if (this.props.menuSectionRef.current)
@@ -48,6 +51,22 @@ class Header extends React.Component<WithTranslation & HeaderProps & ReturnType<
 
     }
 
+    toggleMenu = () => {
+        if (this.dropdownMenuRef.current) {
+            this.dropdownMenuRef.current.getAttribute("style") == "display: none;"
+                ? this.dropdownMenuRef.current.setAttribute("style", "display: block;")
+                : this.dropdownMenuRef.current.setAttribute("style", "display: none;")
+        }
+    }
+
+    openNavbar = () => {
+        if (this.menuRef.current) {
+            this.menuRef.current.getAttribute("style") == "display: none;"
+                ? this.menuRef.current.setAttribute("style", "display: block;")
+                : this.menuRef.current.setAttribute("style", "display: none;")
+        }
+    }
+
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
         return(
             <div >
@@ -56,11 +75,11 @@ class Header extends React.Component<WithTranslation & HeaderProps & ReturnType<
                     <div className="container">
                         <a className="navbar-brand" href="/"><span className="flaticon-pizza-1 mr-1"></span>The Yummi<br/>
                             <small>Pizza</small></a>
-                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                        <button className="navbar-toggler" type="button" onClick={this.openNavbar}//data-toggle="collapse" data-target="#ftco-nav"
                                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="oi oi-menu"></span> Menu
                         </button>
-                        <div className="collapse navbar-collapse" id="ftco-nav">
+                        <div className="collapse navbar-collapse" id="ftco-nav" ref={this.menuRef}>
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item active"><a style={{cursor: "pointer"}} href="/" className="nav-link">Home</a></li>
                                 <li className="nav-item"><a style={{cursor: "pointer"}} className="nav-link" onClick={this.slideToMenuSection}>Menu</a></li>
@@ -80,12 +99,13 @@ class Header extends React.Component<WithTranslation & HeaderProps & ReturnType<
                                             <div style={{padding: 10, margin: "0 auto", width: "100%", zIndex:100}}>
 
                                                 <div className="dropdown">
-                                                    <button className="btn btn-secondary dropdown-toggle" type="button"
-                                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                    <button className="btn btn-secondary " type="button"
+                                                             onClick={this.toggleMenu} id="dropdownMenuButton"
                                                             aria-expanded="false">
                                                         <h6>{this.props.userState.login}</h6>
+                                                        <i className="fas fa-angle-down"></i>
                                                     </button>
-                                                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <div className="dropdown-menu" ref={this.dropdownMenuRef} style={{display: "none"}} id="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                         <a className="dropdown-item" style={{cursor: "pointer"}} onClick={() => this.props.history.push("/profile")}><i style={{paddingRight: 4}}
                                                             className="fas fa-user"></i>   Profile</a>
                                                         <a className="dropdown-item" href="#"><i style={{paddingRight: 4}}

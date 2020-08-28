@@ -105,9 +105,6 @@ class ProfilePage extends React.Component<WithTranslation & ReturnType<typeof ma
                     image: btoa(image)
                 })
             };
-
-
-
         }
     }
 

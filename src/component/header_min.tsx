@@ -6,6 +6,7 @@ import {AppState} from "../states/app_state";
 import {AuthenticationState} from "../states/authentication_state";
 import {Authority} from "../models/user";
 import {RouteComponentProps, useHistory} from "react-router";
+import {createRef} from "react";
 
 interface HeaderProps {
     menuSectionRef: RefObject<HTMLDivElement>,
@@ -16,6 +17,10 @@ interface HeaderProps {
 }
 
 class HeaderMin extends React.Component<WithTranslation & HeaderProps & ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & RouteComponentProps> {
+
+    dropdownMenuRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
+    menuRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
+
     slideToMenuSection = () => {
         if (this.props.menuSectionRef.current)
             this.props.menuSectionRef.current.scrollIntoView({behavior: "smooth"})
@@ -42,6 +47,23 @@ class HeaderMin extends React.Component<WithTranslation & HeaderProps & ReturnTy
 
     }
 
+    toggleMenu = () => {
+        if (this.dropdownMenuRef.current) {
+            this.dropdownMenuRef.current.getAttribute("style") == "display: none;"
+                ? this.dropdownMenuRef.current.setAttribute("style", "display: block;")
+                : this.dropdownMenuRef.current.setAttribute("style", "display: none;")
+        }
+    }
+
+
+    openNavbar = () => {
+        if (this.menuRef.current) {
+            this.menuRef.current.getAttribute("style") == "display: none;"
+                ? this.menuRef.current.setAttribute("style", "display: block;")
+                : this.menuRef.current.setAttribute("style", "display: none;")
+        }
+    }
+
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
         return(
             <div>
@@ -50,11 +72,11 @@ class HeaderMin extends React.Component<WithTranslation & HeaderProps & ReturnTy
                     <div className="container">
                         <a className="navbar-brand" href="/"><span className="flaticon-pizza-1 mr-1"></span>Pizza<br/>
                             <small>Delicous</small></a>
-                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                        <button className="navbar-toggler" type="button" onClick={this.openNavbar}//data-toggle="collapse" data-target="#ftco-nav"
                                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="oi oi-menu"></span> Menu
                         </button>
-                        <div className="collapse navbar-collapse" id="ftco-nav">
+                        <div className="collapse navbar-collapse" id="ftco-nav" ref={this.menuRef}>
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item active  border-right"><a style={{cursor: "pointer"}} onClick={() => this.props.history.push("/")} className="nav-link">Home</a></li>
                                 {
@@ -70,12 +92,13 @@ class HeaderMin extends React.Component<WithTranslation & HeaderProps & ReturnTy
                                             <div style={{padding: 10, margin: "0 auto", width: "100%", zIndex:100}}>
 
                                                 <div className="dropdown">
-                                                    <button className="btn btn-secondary dropdown-toggle" type="button"
-                                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                    <button className="btn btn-secondary " type="button"
+                                                            onClick={this.toggleMenu} id="dropdownMenuButton"
                                                             aria-expanded="false">
                                                         <h6>{this.props.userState.login}</h6>
+                                                        <i className="fas fa-angle-down"></i>
                                                     </button>
-                                                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <div className="dropdown-menu" ref={this.dropdownMenuRef} style={{display: "none"}} id="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                         <a className="dropdown-item" style={{cursor: "pointer"}} onClick={() => this.props.history.push("/profile")}><i style={{paddingRight: 4}}
                                                                                                                                                                         className="fas fa-user"></i>   Profile</a>
                                                         <a className="dropdown-item" href="#"><i style={{paddingRight: 4}}
@@ -90,15 +113,20 @@ class HeaderMin extends React.Component<WithTranslation & HeaderProps & ReturnTy
                                             <div style={{padding: 10, margin: "0 auto", width: "100%", zIndex:100}}>
 
                                                 <div className="dropdown">
-                                                    <button className="btn btn-secondary dropdown-toggle" type="button"
-                                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                    <button className="btn btn-secondary " type="button"
+                                                            onClick={this.toggleMenu} id="dropdownMenuButton"
                                                             aria-expanded="false">
-                                                        <h6>{this.props.userState.login} - Manager</h6>
+                                                        <h6>{this.props.userState.login}</h6>
+                                                        <i className="fas fa-angle-down"></i>
                                                     </button>
-                                                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a className="dropdown-item" href="#">Action</a>
-                                                        <a className="dropdown-item" href="#">Another action</a>
-                                                        <a className="dropdown-item" href="#">Something else here</a>
+                                                    <div className="dropdown-menu" ref={this.dropdownMenuRef} style={{display: "none"}} id="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a className="dropdown-item" style={{cursor: "pointer"}} onClick={() => this.props.history.push("/profile")}><i style={{paddingRight: 4}}
+                                                                                                                                                                        className="fas fa-user"></i>   Profile</a>
+                                                        <a className="dropdown-item" href="#"><i style={{paddingRight: 4}}
+                                                                                                 className="fa fa-list-alt" aria-hidden="true"></i>
+                                                            Orders</a>
+                                                        <a className="dropdown-item" href="#"><i style={{paddingRight: 4}}
+                                                                                                 className="fas fa-sign-out-alt"></i>   Logout</a>
                                                     </div>
                                                 </div>
                                             </div>

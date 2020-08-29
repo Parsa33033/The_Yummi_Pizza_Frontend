@@ -343,7 +343,7 @@ class MenuSection extends React.Component<WithTranslation & MenuSectionProps & R
                                                 <div className="row">
                                                     {
                                                         this.props.menuItemListState.items.length >= 1 ?this.props.menuItemListState.items.map((value) => {
-                                                            if (value.type.toString() == FoodType[FoodType.PASTA])
+                                                            if (value.type.toString() == FoodType[FoodType.BURGER])
                                                                 return <div className="col-md-4 text-center">
                                                                     <div className="menu-wrap">
                                                                         <a href="#" className="menu-img img mb-4"
@@ -374,7 +374,7 @@ class MenuSection extends React.Component<WithTranslation & MenuSectionProps & R
                                                 <div className="row">
                                                     {
                                                         this.props.menuItemListState.items.length >= 1 ? this.props.menuItemListState.items.map((value) => {
-                                                            if (value.type.toString() == FoodType[FoodType.BURGER])
+                                                            if (value.type.toString() == FoodType[FoodType.PASTA])
                                                                 return <div className="col-md-4 text-center">
                                                                     <div className="menu-wrap">
                                                                         <a className="menu-img img mb-4"

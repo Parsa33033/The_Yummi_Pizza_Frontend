@@ -62,44 +62,55 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
     }
 
     order = async () => {
-        if (this.props.cartState.items.length >= 1) {
-            const address: AddressDTO = {
-                phoneNumber: this.state.phoneNumber,
-                country: this.state.country,
-                city: this.state.city,
-                address2: this.state.address2,
-                address1: this.state.address1,
-                state: this.state.state,
-                id: -1,
-            }
-            const orderDTO: OrderDTO = {
-                pizzariaId: 1,
-                totalPrice: this.totalPrice,
-                paidIn: this.props.localeState.currency,
-                id: -1,
-                delivered: false,
-                date: new Date(Date.now()),
-                customerId: this.customer.id,
-                addressId: -1,
-                address: address,
-                items: this.props.cartState.items
-            }
-            var i = await this.props.order(orderDTO)
-            if (i == 1) {
-                this.setState({
-                    errorMessage: "",
-                    done: true,
-                })
-                const emptyCart: CartState = {
-                    items: []
+        if (this.state.phoneNumber != "" && this.state.address1 != "" &&
+            this.state.address2 != "" && this.state.city != "" &&
+            this.state.city != "" && this.state.country != "" &&
+            this.state.state != "" && this.state.firstName != "" &&
+            this.state.lastName != "" && this.state.email != ""){
+            if (this.props.cartState.items.length >= 1) {
+                const address: AddressDTO = {
+                    phoneNumber: this.state.phoneNumber,
+                    country: this.state.country,
+                    city: this.state.city,
+                    address2: this.state.address2,
+                    address1: this.state.address1,
+                    state: this.state.state,
+                    id: -1,
                 }
-                this.props.emptyCart(emptyCart)
-            } else {
-                this.setState({
-                    errorMessage: "failure"
-                })
+                const orderDTO: OrderDTO = {
+                    pizzariaId: 1,
+                    totalPrice: this.totalPrice,
+                    paidIn: this.props.localeState.currency,
+                    id: -1,
+                    delivered: false,
+                    date: new Date(Date.now()),
+                    customerId: this.customer.id,
+                    addressId: -1,
+                    address: address,
+                    items: this.props.cartState.items
+                }
+                var i = await this.props.order(orderDTO)
+                if (i == 1) {
+                    this.setState({
+                        errorMessage: "",
+                        done: true,
+                    })
+                    const emptyCart: CartState = {
+                        items: []
+                    }
+                    this.props.emptyCart(emptyCart)
+                } else {
+                    this.setState({
+                        errorMessage: "failure"
+                    })
+                }
             }
+        } else {
+            this.setState({
+                errorMessage: "please fill in all the inputs"
+            })
         }
+
     }
 
     switchCurrency = () => {
@@ -389,7 +400,7 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
                             <div style={{backgroundColor: "gray", opacity: 0.7, position: "fixed", top: 0, right: 0, left: 0, bottom: 0, zIndex: 10}}/>
                             <div className="alert alert-success" style={{position: "fixed", top: "30%", left: "25%", width: "50%", zIndex: 10}} role="alert">
                                 <h4 className="alert-heading">Well done!</h4>
-                                <p>Your order has been done</p>
+                                <p>Your order has been completed.</p>
                                 <hr/>
                                 <p className="mb-0"><button type="button" className="btn btn-secondary" onClick={() => this.props.history.replace("/")} >
                                     Redirect to your Home page

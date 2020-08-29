@@ -2,9 +2,12 @@ import {ManagerState} from "../states/manager_state";
 import {ThunkDispatch} from "redux-thunk";
 import {appActions} from "./app_action";
 import axios, {AxiosRequestConfig} from "axios";
-import {manager_url} from "../config/urls";
+import {add_menu_item_url, manager_url} from "../config/urls";
 import {Gender} from "../models/gender";
 import {ManagerDTO} from "../dto/manager_dto";
+import {MenuItemDTO} from "../dto/menu_item_dto";
+import {MenuItemListState} from "../states/menu_item_state";
+import {SET_MENU_ITEM_LIST} from "./order_action";
 
 
 export const SET_MANAGER = "set_manager"
@@ -61,3 +64,25 @@ export const updateManager = async (dispatch: ThunkDispatch<{}, {}, appActions>,
     })
 }
 
+
+export const addMenuItem = async (dispatch: ThunkDispatch<{}, {}, appActions>, jwt: string, menuItem: MenuItemDTO, menuItemListState: MenuItemListState) => {
+    const config: AxiosRequestConfig = {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + jwt
+        }
+    }
+    return await axios.post(add_menu_item_url, JSON.stringify(menuItem), config).then((response) => {
+        if (response.status == 200) {
+            menuItemListState.items.push(menuItem)
+            dispatch({
+                type: SET_MENU_ITEM_LIST,
+                payload: menuItemListState
+            })
+            return 1
+        }
+        return 0;
+    }).catch((e) => {
+        return 0;
+    })
+}

@@ -116,7 +116,7 @@ class HeaderMin extends React.Component<WithTranslation & HeaderProps & ReturnTy
                                                     <button className="btn btn-secondary " type="button"
                                                             onClick={this.toggleMenu} id="dropdownMenuButton"
                                                             aria-expanded="false">
-                                                        <h6>{this.props.userState.login}</h6>
+                                                        <h6>{this.props.userState.login} - <small>Manager</small></h6>
                                                         <i className="fas fa-angle-down"></i>
                                                     </button>
                                                     <div className="dropdown-menu" ref={this.dropdownMenuRef} style={{display: "none"}} id="dropdown-menu" aria-labelledby="dropdownMenuButton">

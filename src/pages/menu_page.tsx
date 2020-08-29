@@ -1,6 +1,7 @@
 import {connect} from "react-redux";
 import {WithTranslation, withTranslation} from "react-i18next";
 import * as React from "react";
+import {ChangeEvent} from "react";
 import {AppState} from "../states/app_state";
 import {ThunkDispatch} from "redux-thunk";
 import {appActions} from "../actions/app_action";
@@ -15,10 +16,15 @@ import {SWITCH_CURRENCY} from "../actions/locale_action";
 import {Authority} from "../models/user";
 import about_img from "../assets/images/about.jpg";
 import {FoodType} from "../models/menu_item";
+import profileAvatar from "../assets/images/profile.png";
+import {Gender} from "../models/gender";
+import {MenuItemListState, MenuItemState} from "../states/menu_item_state";
+import {MenuItemDTO} from "../dto/menu_item_dto";
+import {addMenuItem} from "../actions/manager_action";
 
-interface MenuPageState {
-    addMenuItemFormAppear: boolean
-    foodType: FoodType
+interface MenuPageState extends MenuItemState{
+    addMenuItemFormAppear: boolean,
+    errorMessage: string,
 }
 
 class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & RouteComponentProps, MenuPageState> {
@@ -28,7 +34,19 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
         super(props);
         this.state = {
             addMenuItemFormAppear: false,
-            foodType: FoodType.PIZZA
+            errorMessage: "",
+            name: "",
+            id: 0,
+            priceEuro: 0,
+            priceDollor: 0,
+            picJpg: "",
+            description: "",
+            ingredient: "",
+            type: FoodType.PIZZA,
+            pizzariaId: 0,
+            picPngContentType: "",
+            picPng: "",
+            picJpgContentType: ""
         }
     }
 
@@ -43,8 +61,58 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
     appearMenuItemForm = (foodType: FoodType) => {
         this.setState({
             addMenuItemFormAppear: !this.state.addMenuItemFormAppear,
-            foodType: foodType
+            type: foodType
         })
+    }
+
+    addMenuItem = async () => {
+        if (this.state.priceEuro != 0 && this.state.priceDollor != 0 &&
+            this.state.name != "" && this.state.picJpg != "" && this.state.ingredient != "") {
+            const menuItem: MenuItemDTO = {
+                priceDollor: this.state.priceDollor,
+                priceEuro: this.state.priceEuro,
+                name: this.state.name,
+                ingredient: this.state.ingredient,
+                description: this.state.description,
+                picJpg: this.state.picJpg,
+                picJpgContentType: "image/jpeg",
+                picPng: "",
+                picPngContentType: "",
+                pizzariaId: 1,
+                type: this.state.type,
+                id: 0,
+            }
+            var i = await this.props.addMenuItem(this.props.authentication.id_token, menuItem, this.props.menuItemListState)
+            alert(i)
+            if (i == 1) {
+                this.setState({
+                    addMenuItemFormAppear: false
+                })
+            } else {
+                this.setState({
+                    errorMessage: this.t("failure")
+                })
+            }
+        } else {
+            this.setState({
+                errorMessage: "please fill in all the inputs!"
+            })
+        }
+    }
+
+    handleImageChange = async (input: ChangeEvent<HTMLInputElement>) => {
+        if(input.target.files) {
+            var file = await input.target.files[0]
+            let reader = new FileReader();
+            reader.readAsBinaryString(file)
+            var image = ""
+            reader.onload =  () => {
+                image = reader.result != null ? reader.result.toString() : ""
+                this.setState({
+                    picJpg: btoa(image)
+                })
+            };
+        }
     }
 
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
@@ -60,7 +128,7 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                            location={this.props.location}
                            history={this.props.history}/>
 
-                <Breadcrumb title={"Orders"}/>
+                <Breadcrumb title={"Menu Management"}/>
 
 
                 {
@@ -100,19 +168,19 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                                     <div className="nav ftco-animate nav-pills" id="v-pills-tab" role="tablist"
                                                          aria-orientation="vertical">
                                                         <a className="nav-link active" id="v-pills-1-tab" data-toggle="pill"
-                                                           href="#v-pills-1" role="tab" aria-controls="v-pills-1"
+                                                           href="#v-pills-1" role="tab" aria-controls="v-pills-1" onClick={() => this.setState({type: FoodType.PIZZA})}
                                                            aria-selected="true">{FoodType[FoodType.PIZZA]}</a>
 
                                                         <a className="nav-link" id="v-pills-2-tab" data-toggle="pill"
-                                                           href="#v-pills-2" role="tab" aria-controls="v-pills-2"
+                                                           href="#v-pills-2" role="tab" aria-controls="v-pills-2" onClick={() => this.setState({type: FoodType.DRINK})}
                                                            aria-selected="false">{FoodType[FoodType.DRINK]}</a>
 
                                                         <a className="nav-link" id="v-pills-3-tab" data-toggle="pill"
-                                                           href="#v-pills-3" role="tab" aria-controls="v-pills-3"
+                                                           href="#v-pills-3" role="tab" aria-controls="v-pills-3" onClick={() => this.setState({type: FoodType.BURGER})}
                                                            aria-selected="false">{FoodType[FoodType.BURGER]}</a>
 
                                                         <a className="nav-link" id="v-pills-4-tab" data-toggle="pill"
-                                                           href="#v-pills-4" role="tab" aria-controls="v-pills-4"
+                                                           href="#v-pills-4" role="tab" aria-controls="v-pills-4" onClick={() => this.setState({type: FoodType.PASTA})}
                                                            aria-selected="false">{FoodType[FoodType.PASTA]}</a>
                                                     </div>
                                                 </div>
@@ -189,7 +257,7 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                                             <div className="row">
                                                                 {
                                                                     this.props.menuItemListState.items.length >= 1 ?this.props.menuItemListState.items.map((value) => {
-                                                                        if (value.type.toString() == FoodType[FoodType.PASTA])
+                                                                        if (value.type.toString() == FoodType[FoodType.BURGER])
                                                                             return <div className="col-md-4 text-center">
                                                                                 <div className="menu-wrap">
                                                                                     <a href="#" className="menu-img img mb-4"
@@ -220,7 +288,7 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                                             <div className="row">
                                                                 {
                                                                     this.props.menuItemListState.items.length >= 1 ? this.props.menuItemListState.items.map((value) => {
-                                                                        if (value.type.toString() == FoodType[FoodType.BURGER])
+                                                                        if (value.type.toString() == FoodType[FoodType.PASTA])
                                                                             return <div className="col-md-4 text-center">
                                                                                 <div className="menu-wrap">
                                                                                     <a className="menu-img img mb-4"
@@ -254,14 +322,77 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                             {
                                 this.state.addMenuItemFormAppear ?
                                     <div>
-                                        <div style={{backgroundColor: "gray", opacity: 0.7, position: "fixed", top: 0, right: 0, left: 0, bottom: 0, zIndex: 10}}/>
-                                        <div className="alert alert-success" style={{position: "fixed", top: "30%", left: "25%", width: "50%", zIndex: 10}} role="alert">
-                                            <h4 className="alert-heading">{FoodType[this.state.foodType]}</h4>
-                                            <p>Your order has been done</p>
-                                            <hr/>
-                                            <p className="mb-0"><button type="button" className="btn btn-secondary" onClick={() => this.setState({addMenuItemFormAppear: false})} >
-                                                Redirect to your Home page
-                                            </button></p>
+                                        <div style={{backgroundColor: "gray", opacity: 0.7, position: "fixed", top: 0, right: 0, left: 0, bottom: 0, zIndex: 10, margin: "auto"}}/>
+                                        <div className="" style={{ backgroundColor: "#c9c4a1", borderRadius: 10, position: "fixed", top: 0, right: 0, left: 0, bottom: 0, zIndex: 10, width: "75%", height: "75%", margin: "auto"}} role="alert">
+                                            <h4 className="" style={{color: "gray", padding: 10}}>Add a {FoodType[this.state.type]}</h4>
+                                            <div className="container" style={{zIndex: 10, color: "gray"}}>
+                                                <div style={{position: "absolute", top: 10, right: 10}}><a style={{cursor: "pointer"}} onClick={() => this.setState({addMenuItemFormAppear: false})}><i
+                                                    className="fas fa-times fa-2x"></i></a></div>
+                                                <div className="container bootstrap snippets bootdey">
+                                                    <hr/>
+                                                    <div className="row">
+
+                                                        <div className="col-md-3">
+                                                            <div className="text-center">
+                                                                <img style={{height: 100, width: 100}} src={this.state.picJpg != "" && this.state.picJpg != null ? `data:image/jpeg;base64,${this.state.picJpg}`: profileAvatar} className="avatar img-circle" alt="avatar"/>
+
+
+                                                                <input type="file"  style={{color: "white"}} className="form-control" onChange={this.handleImageChange}/>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div className="col-md-9 personal-info" >
+
+                                                            <div className="form-horizontal" role="form">
+                                                                <div className="form-group">
+                                                                    <div className="row">
+                                                                        <label className="col-lg-3 control-label" style={{color: "white"}} >Name:</label>
+                                                                        <div className="col-lg-8">
+                                                                            <input className="form-control" type="text" style={{color: "white"}} value={this.state.name} onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                                                                                this.setState({name: event.target.value})
+                                                                            }} />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="form-group">
+                                                                    <div className="row">
+                                                                        <label className="col-lg-3 control-label" style={{color: "white"}} >Ingredient</label>
+                                                                        <div className="col-lg-8">
+                                                                            <input className="form-control" type="text"  style={{color: "white"}} value={this.state.ingredient} onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                                                                                this.setState({ingredient: event.target.value})
+                                                                            }}/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="form-group">
+                                                                    <div className="row">
+                                                                        <label className="col-lg-3 control-label" style={{color: "white"}} >Price in Dollor:</label>
+                                                                        <div className="col-lg-8">
+                                                                            <input className="form-control" type="number" style={{color: "white"}}  value={this.state.priceDollor} onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                                                                                this.setState({priceDollor: Number(event.target.value)})
+                                                                            }}/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="form-group">
+                                                                    <div className="row">
+                                                                        <label className="col-lg-3 control-label" style={{color: "white"}} >Price in Dollor:</label>
+                                                                        <div className="col-lg-8">
+                                                                            <input className="form-control" type="number"  style={{color: "white"}} value={this.state.priceEuro} onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                                                                                this.setState({priceEuro: Number(event.target.value)})
+                                                                            }}/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <h6 style={{color: "red"}}>{this.state.errorMessage}</h6>
+                                                                <button type="button" className="btn btn-secondary" style={{margin: 40, width: 200, height: 40, color: "white"}} onClick={this.addMenuItem} >Add Menu Item</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     :
@@ -310,6 +441,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, appActions>) => {
                 payload: localState
             })
         },
+        addMenuItem: (jwt: string, menuItem: MenuItemDTO, menuItemListState: MenuItemListState) => addMenuItem(dispatch, jwt, menuItem, menuItemListState)
     }
 }
 

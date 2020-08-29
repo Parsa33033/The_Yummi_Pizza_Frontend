@@ -86,6 +86,7 @@ class ProfilePage extends React.Component<WithTranslation & ReturnType<typeof ma
 
     componentWillMount(): void {
         loadScripts()
+        window.scrollTo(0, 0)
     }
 
     updateCustomer = async () => {

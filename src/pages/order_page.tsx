@@ -31,6 +31,7 @@ class OrderPage extends React.Component<WithTranslation & ReturnType<typeof mapS
 
     componentWillMount = async () => {
         loadScripts()
+        window.scrollTo(0, 0)
         if (this.props.userState.authorities.includes(Authority[Authority.ROLE_USER])) {
             await this.props.getCustomerOrders(this.props.authentication.id_token)
 

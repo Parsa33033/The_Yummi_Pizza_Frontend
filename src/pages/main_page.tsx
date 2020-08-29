@@ -61,11 +61,7 @@ class MainPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
 
     componentWillMount = async () => {
         loadScripts()
-
-        this.props.getPizzaria()
-        this.props.getMenuItemList()
-        this.props.getCustomer(this.props.authentication.id_token)
-
+        window.scrollTo(0, 0)
     }
 
 

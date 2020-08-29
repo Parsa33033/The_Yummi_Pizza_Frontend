@@ -49,6 +49,7 @@ class ActivationPage extends React.Component<WithTranslation & RouteComponentPro
 
     componentWillMount(): void {
         loadScripts()
+        window.scrollTo(0, 0)
     }
 
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {

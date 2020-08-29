@@ -59,6 +59,7 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
 
     componentWillMount(): void {
         loadScripts()
+        window.scrollTo(0, 0)
     }
 
     order = async () => {

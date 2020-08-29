@@ -45,6 +45,7 @@ class PasswordResetPage extends React.Component<WithTranslation & RouteComponent
 
     componentWillMount(): void {
         loadScripts()
+        window.scrollTo(0, 0)
     }
 
     resetPassword = async () => {

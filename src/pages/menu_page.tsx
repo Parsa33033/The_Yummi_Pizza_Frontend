@@ -1,10 +1,10 @@
 import {connect} from "react-redux";
 import {WithTranslation, withTranslation} from "react-i18next";
 import * as React from "react";
-import {ChangeEvent} from "react";
+import {ChangeEvent, useEffect} from "react";
 import {AppState} from "../states/app_state";
 import {ThunkDispatch} from "redux-thunk";
-import {appActions} from "../actions/app_action";
+import {appActions, appInit} from "../actions/app_action";
 import HeaderMin from "../component/header_min";
 import {aboutUsRef, contactUsRef, menuSectionRef, signinRef, signupRef} from "./main_page";
 import Breadcrumb from "../component/breadcrumb";
@@ -52,6 +52,7 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
 
     componentWillMount = async () => {
         loadScripts()
+        window.scrollTo(0, 0)
     }
 
     switchCurrency = () => {
@@ -83,7 +84,6 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                 id: 0,
             }
             var i = await this.props.addMenuItem(this.props.authentication.id_token, menuItem, this.props.menuItemListState)
-            alert(i)
             if (i == 1) {
                 this.setState({
                     addMenuItemFormAppear: false
@@ -115,6 +115,7 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
         }
     }
 
+
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
         return (
             <div>
@@ -130,9 +131,8 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
 
                 <Breadcrumb title={"Menu Management"}/>
 
-
                 {
-                    this.props.userState.authorities.includes(Authority[Authority.ROLE_MANAGER]) ?
+                    !this.props.userState.authorities.includes(Authority[Authority.ROLE_USER]) ?
 
                         <div>
                             <div className="row justify-content-center mb-5 pb-3 mt-5 pt-5">
@@ -377,7 +377,7 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                                                 </div>
                                                                 <div className="form-group">
                                                                     <div className="row">
-                                                                        <label className="col-lg-3 control-label" style={{color: "white"}} >Price in Dollor:</label>
+                                                                        <label className="col-lg-3 control-label" style={{color: "white"}} >Price in Euro:</label>
                                                                         <div className="col-lg-8">
                                                                             <input className="form-control" type="number"  style={{color: "white"}} value={this.state.priceEuro} onChange={(event: ChangeEvent<HTMLInputElement>) => {
                                                                                 this.setState({priceEuro: Number(event.target.value)})
@@ -430,7 +430,7 @@ const mapStateToProps = (state: any): AppState => {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, appActions>) => {
     return {
-        updateProfile: () => null,
+        appInit: () => appInit(dispatch),
         switchCurrency: (currency: Currency) => {
             const localState: LocaleState = {
                 currency: Currency[currency].toString() == Currency[Currency.DOLLOR] ? Currency.EURO : Currency.DOLLOR

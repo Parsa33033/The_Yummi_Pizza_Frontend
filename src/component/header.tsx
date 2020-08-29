@@ -6,6 +6,8 @@ import {AppState} from "../states/app_state";
 import {AuthenticationState} from "../states/authentication_state";
 import {Authority} from "../models/user";
 import {RouteComponentProps} from "react-router";
+import {appActions, logout} from "../actions/app_action";
+import {ThunkDispatch} from "redux-thunk";
 
 interface HeaderProps {
     menuSectionRef: RefObject<HTMLDivElement>,
@@ -111,7 +113,7 @@ class Header extends React.Component<WithTranslation & HeaderProps & ReturnType<
                                                         <a className="dropdown-item" style={{cursor: "pointer"}} onClick={() => this.props.history.push("/orders")}><i style={{paddingRight: 4}}
                                                             className="fa fa-list-alt" aria-hidden="true"></i>
                                                                Orders</a>
-                                                        <a className="dropdown-item" href="#"><i style={{paddingRight: 4}}
+                                                        <a className="dropdown-item" style={{cursor: "pointer"}} onClick={() => this.props.logout()}><i style={{paddingRight: 4}}
                                                             className="fas fa-sign-out-alt"></i>   Logout</a>
                                                     </div>
                                                 </div>
@@ -135,7 +137,7 @@ class Header extends React.Component<WithTranslation & HeaderProps & ReturnType<
                                                         <a className="dropdown-item" style={{cursor: "pointer"}} onClick={() => this.props.history.push("/menu")}><i style={{paddingRight: 4}}
                                                                                                                                                                        className="fa fa-list-alt" aria-hidden="true"></i>
                                                             Menu</a>
-                                                        <a className="dropdown-item" href="#"><i style={{paddingRight: 4}}
+                                                        <a className="dropdown-item" style={{cursor: "pointer"}} onClick={() => this.props.logout()}><i style={{paddingRight: 4}}
                                                                                                  className="fas fa-sign-out-alt"></i>   Logout</a>
                                                     </div>
                                                 </div>
@@ -184,9 +186,9 @@ const mapStateToProps = (state: any) : AppState => {
     }
 }
 
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, appActions>) => {
     return {
-        doNone: () => {}
+        logout: () => logout(dispatch)
     };
 }
 

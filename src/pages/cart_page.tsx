@@ -22,6 +22,7 @@ class CartPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
 
     componentWillMount(): void {
         loadScripts()
+        window.scrollTo(0, 0)
     }
 
     switchCurrency = () => {

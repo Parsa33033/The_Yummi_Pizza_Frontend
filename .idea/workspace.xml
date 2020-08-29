@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e256b6f-6e8d-4e51-b3c8-8992f3033715" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/urls.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/urls.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/config/urls.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+            <state relative-caret-position="289">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
             </state>
           </provider>
         </entry>
@@ -117,18 +116,6 @@
                 <caret line="38" column="70" selection-start-line="38" selection-start-column="70" selection-end-line="38" selection-end-column="70" />
               </first_editor>
               <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/component/contact_us.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="42" column="32" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#63#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -267,90 +254,6 @@
               <item name="the_yummi_pizza" type="b2602c69:ProjectViewProjectNode" />
               <item name="the_yummi_pizza" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="the_yummi_pizza" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the_yummi_pizza" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the_yummi_pizza" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the_yummi_pizza" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the_yummi_pizza" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the_yummi_pizza" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the_yummi_pizza" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the_yummi_pizza" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the_yummi_pizza" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the_yummi_pizza" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="actions" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the_yummi_pizza" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the_yummi_pizza" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="component" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the_yummi_pizza" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the_yummi_pizza" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the_yummi_pizza" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the_yummi_pizza" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="dto" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the_yummi_pizza" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the_yummi_pizza" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="i18n" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the_yummi_pizza" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the_yummi_pizza" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="i18n" type="462c0819:PsiDirectoryNode" />
-              <item name="en" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the_yummi_pizza" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the_yummi_pizza" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the_yummi_pizza" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the_yummi_pizza" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the_yummi_pizza" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the_yummi_pizza" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="reducers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the_yummi_pizza" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the_yummi_pizza" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="states" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -406,18 +309,18 @@
       <workItem from="1598507731683" duration="31022000" />
       <workItem from="1598591007775" duration="54517000" />
       <workItem from="1598684648135" duration="8413000" />
-      <workItem from="1598698364359" duration="12841000" />
+      <workItem from="1598698364359" duration="13125000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="200885000" />
+    <option name="totallyTimeSpent" value="201169000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19987147" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19987147" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -435,7 +338,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="TypeScript" order="10" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4993573" visible="true" weight="0.24495289" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4993573" visible="true" weight="0.24495289" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50064266" side_tool="true" weight="0.26110363" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -452,16 +355,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/dto/customer_dto.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/states/order_state.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
@@ -889,10 +782,15 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/yarn.lock">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2703" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/config/urls.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+        <state relative-caret-position="289">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>

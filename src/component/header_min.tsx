@@ -60,9 +60,14 @@ class HeaderMin extends React.Component<WithTranslation & HeaderProps & ReturnTy
 
     openNavbar = () => {
         if (this.menuRef.current) {
-            this.menuRef.current.getAttribute("style") == "display: none;"
-                ? this.menuRef.current.setAttribute("style", "display: block;")
-                : this.menuRef.current.setAttribute("style", "display: none;")
+            if (this.menuRef.current.getAttribute("style") == null){
+                this.menuRef.current.setAttribute("style", "display: block;")
+            } else {
+                this.menuRef.current.getAttribute("style") == "display: none;"
+                    ? this.menuRef.current.setAttribute("style", "display: block;")
+                    : this.menuRef.current.setAttribute("style", "display: none;")
+            }
+
         }
     }
 

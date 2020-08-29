@@ -405,12 +405,12 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
                     this.state.done ?
                         <div>
                             <div style={{backgroundColor: "gray", opacity: 0.7, position: "fixed", top: 0, right: 0, left: 0, bottom: 0, zIndex: 10}}/>
-                            <div className="alert alert-success" style={{position: "fixed", top: "30%", left: "25%", width: "50%", zIndex: 10}} role="alert">
+                            <div className="alert alert-success" style={{position: "fixed", top: "20%", left: 0, right:0, width: "60%", margin: "auto", zIndex: 10}} role="alert">
                                 <h4 className="alert-heading">Well done!</h4>
                                 <p>Your order has been completed.</p>
                                 <hr/>
                                 <p className="mb-0"><button type="button" className="btn btn-secondary" onClick={() => this.props.history.replace("/")} >
-                                    Redirect to your Home page
+                                    <small>Redirect to your Home page</small>
                                 </button></p>
                             </div>
                         </div>

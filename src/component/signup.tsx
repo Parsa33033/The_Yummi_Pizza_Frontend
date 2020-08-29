@@ -148,10 +148,10 @@ class Signup extends React.Component<WithTranslation & SignupProps & ReturnType<
                         <div style={{display: "block", width: "100%"}}>
                             {
                                 this.state.successfulRegistration ?
-                                    <div className="alert alert-success registration-alert" style={{position:"fixed", top: 100, left: 100, width: 300}} role="alert">
+                                    <div className="alert alert-success registration-alert" style={{position:"fixed", top: 100, left: 20, width: 300}} role="alert">
                                         <strong>{this.t("well-done")}</strong> {this.state.registrationMessage}
                                     </div> :
-                                    <div className="alert alert-danger registration-alert" style={{position:"fixed", top: 100, left: 100, width: 300}} role="alert">
+                                    <div className="alert alert-danger registration-alert" style={{position:"fixed", top: 100, left: 20, width: 300}} role="alert">
                                         <strong>{this.t("error")}</strong> {this.state.registrationMessage}
                                     </div>
                             }

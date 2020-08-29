@@ -256,7 +256,7 @@ class MenuSection extends React.Component<WithTranslation & MenuSectionProps & R
                                 </div>
                             </div>
                         </div>
-                        <div className="alert alert-success registration-alert" style={{position:"fixed", top: 100, left: 100, width: 300, display: this.state.showToast? "block" : "none"}} role="alert">
+                        <div className="alert alert-success registration-alert" style={{position:"fixed", top: 100, left: 10, width: 300, display: this.state.showToast? "block" : "none"}} role="alert">
                             <strong>Added to Cart</strong>
                         </div>
                     </div>

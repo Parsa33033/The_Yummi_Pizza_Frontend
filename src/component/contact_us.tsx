@@ -38,8 +38,9 @@ class ContactUs extends React.Component<WithTranslation & ContactUsProps & Retur
     sendMessage = async () => {
         if (this.state.name != "" || this.state.subject != "" || this.state.message != "") {
             if (validator.isEmail(this.state.email)) {
+                var email = this.state.email.toLowerCase().trim()
                 const message: CustomerMessageDTO = {
-                    email: this.state.email,
+                    email: email,
                     id: 0,
                     message: this.state.message,
                     name: this.state.name,

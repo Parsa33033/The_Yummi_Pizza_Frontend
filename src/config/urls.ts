@@ -1,5 +1,5 @@
 
-const dns = "localhost"
+const dns = "10.0.0.10"
 const port = "8080"
 const protocol = "http"
 

@@ -22,6 +22,11 @@ class Header extends React.Component<WithTranslation & HeaderProps & ReturnType<
     dropdownMenuRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
     menuRef: RefObject<HTMLDivElement> = createRef<HTMLDivElement>()
 
+    componentWillMount(): void {
+        if (this.menuRef.current)
+            this.menuRef.current.setAttribute("style", "display: none;")
+    }
+
     slideToMenuSection = () => {
         if (this.props.menuSectionRef.current)
             this.props.menuSectionRef.current.scrollIntoView({behavior: "smooth"})
@@ -63,9 +68,14 @@ class Header extends React.Component<WithTranslation & HeaderProps & ReturnType<
 
     openNavbar = () => {
         if (this.menuRef.current) {
-            this.menuRef.current.getAttribute("style") == "display: none;"
-                ? this.menuRef.current.setAttribute("style", "display: block;")
-                : this.menuRef.current.setAttribute("style", "display: none;")
+            if (this.menuRef.current.getAttribute("style") == null){
+                this.menuRef.current.setAttribute("style", "display: block;")
+            } else {
+                this.menuRef.current.getAttribute("style") == "display: none;"
+                    ? this.menuRef.current.setAttribute("style", "display: block;")
+                    : this.menuRef.current.setAttribute("style", "display: none;")
+            }
+
         }
     }
 

@@ -342,18 +342,18 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                 this.state.addMenuItemFormAppear ?
                                     <div>
                                         <div style={{backgroundColor: "gray", opacity: 0.7, position: "fixed", top: 0, right: 0, left: 0, bottom: 0, zIndex: 10, margin: "auto"}}/>
-                                        <div className="" style={{ backgroundColor: "#c9c4a1", borderRadius: 10, position: "fixed", top: 0, right: 0, left: 0, bottom: 0, zIndex: 10, width: "75%", height: "75%", margin: "auto"}} role="alert">
-                                            <h4 className="" style={{color: "gray", padding: 10}}>Add a {FoodType[this.state.type]}</h4>
-                                            <div className="container" style={{zIndex: 10, color: "gray"}}>
+                                        <div className="" style={{ backgroundColor: "black", borderRadius: 10, position: "fixed", top: 0, right: 0, left: 0, bottom: 0, zIndex: 10, width: "100%", height: "100%", margin: "auto"}} role="alert">
+                                            <h4 className="" style={{color: "white", padding: 10}}>Add a {FoodType[this.state.type]}</h4>
+                                            <div className="container" style={{zIndex: 10, color: "white"}}>
                                                 <div style={{position: "absolute", top: 10, right: 10}}><a style={{cursor: "pointer"}} onClick={() => this.setState({addMenuItemFormAppear: false})}><i
                                                     className="fas fa-times fa-2x"></i></a></div>
-                                                <div className="container bootstrap snippets bootdey">
+                                                <div className="container bootstrap snippets bootdey" style={{position: "absolute"}}>
                                                     <hr/>
                                                     <div className="row">
 
                                                         <div className="col-md-3">
                                                             <div className="text-center">
-                                                                <img style={{height: 100, width: 100}} src={this.state.picJpg != "" && this.state.picJpg != null ? `data:image/jpeg;base64,${this.state.picJpg}`: profileAvatar} className="avatar img-circle" alt="avatar"/>
+                                                                <img style={{height: "20%", width: 100}}  src={this.state.picJpg != "" && this.state.picJpg != null ? `data:image/jpeg;base64,${this.state.picJpg}`: profileAvatar} className="avatar img-circle" alt="avatar"/>
 
 
                                                                 <input type="file"  style={{color: "white"}} className="form-control" onChange={this.handleImageChange}/>
@@ -364,41 +364,41 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                                         <div className="col-md-9 personal-info" >
 
                                                             <div className="form-horizontal" role="form">
-                                                                <div className="form-group">
-                                                                    <div className="row">
-                                                                        <label className="col-lg-3 control-label" style={{color: "white"}} >Name:</label>
-                                                                        <div className="col-lg-8">
-                                                                            <input className="form-control" type="text" style={{color: "white"}} value={this.state.name} onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                                                                <div style={{height: "10%", width: "75%"}} className="form-group">
+                                                                    <div className="row"  >
+                                                                        {/*<label className="col-lg-3 control-label" style={{color: "white", height: "10%", width: "75%"}} >Name:</label>*/}
+                                                                        <div className="col-lg-8" >
+                                                                            <input className="form-control" type="text" placeholder="Name of Food"  value={this.state.name} onChange={(event: ChangeEvent<HTMLInputElement>) => {
                                                                                 this.setState({name: event.target.value})
                                                                             }} />
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div className="form-group">
-                                                                    <div className="row">
-                                                                        <label className="col-lg-3 control-label" style={{color: "white"}} >Ingredient</label>
+                                                                <div style={{height: "10%", width: "75%"}} className="form-group">
+                                                                    <div className="row"  >
+                                                                        {/*<label className="col-lg-3 control-label" style={{color: "white"}} >Ingredient</label>*/}
                                                                         <div className="col-lg-8">
-                                                                            <input className="form-control" type="text"  style={{color: "white"}} value={this.state.ingredient} onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                                                                            <input className="form-control" type="text" placeholder="Ingredient"  style={{color: "white"}} value={this.state.ingredient} onChange={(event: ChangeEvent<HTMLInputElement>) => {
                                                                                 this.setState({ingredient: event.target.value})
                                                                             }}/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div className="form-group">
+                                                                <div style={{height: "10%", width: "75%"}} className="form-group">
                                                                     <div className="row">
-                                                                        <label className="col-lg-3 control-label" style={{color: "white"}} >Price in Dollor:</label>
+                                                                        {/*<label className="col-lg-3 control-label" style={{color: "white"}} >Price in Dollor:</label>*/}
                                                                         <div className="col-lg-8">
-                                                                            <input className="form-control" type="number" style={{color: "white"}}  value={this.state.priceDollor} onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                                                                            <input className="form-control" placeholder="Price in Dollor" type="number" style={{color: "white"}}  value={this.state.priceDollor} onChange={(event: ChangeEvent<HTMLInputElement>) => {
                                                                                 this.setState({priceDollor: Number(event.target.value)})
                                                                             }}/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div className="form-group">
+                                                                <div style={{height: "10%", width: "75%"}} className="form-group">
                                                                     <div className="row">
-                                                                        <label className="col-lg-3 control-label" style={{color: "white"}} >Price in Euro:</label>
+                                                                        {/*<label className="col-lg-3 control-label" style={{color: "white"}} >Price in Euro:</label>*/}
                                                                         <div className="col-lg-8">
-                                                                            <input className="form-control" type="number"  style={{color: "white"}} value={this.state.priceEuro} onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                                                                            <input className="form-control" type="number"  placeholder="Price in Euro" style={{color: "white"}} value={this.state.priceEuro} onChange={(event: ChangeEvent<HTMLInputElement>) => {
                                                                                 this.setState({priceEuro: Number(event.target.value)})
                                                                             }}/>
                                                                         </div>
@@ -406,7 +406,7 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                                                 </div>
 
                                                                 <h6 style={{color: "red"}}>{this.state.errorMessage}</h6>
-                                                                <button type="button" className="btn btn-secondary" style={{margin: 40, width: 200, height: 40, color: "white"}} onClick={this.addMenuItem} >Add Menu Item</button>
+                                                                <button style={{ color: "white", width: "50%", margin: "auto"}} type="button" className="btn btn-secondary"onClick={this.addMenuItem} >Add Menu Item</button>
                                                             </div>
                                                         </div>
                                                     </div>

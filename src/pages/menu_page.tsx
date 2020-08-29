@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import {WithTranslation, withTranslation} from "react-i18next";
 import * as React from "react";
-import {ChangeEvent, useEffect} from "react";
+import {ChangeEvent} from "react";
 import {AppState} from "../states/app_state";
 import {ThunkDispatch} from "redux-thunk";
 import {appActions, appInit} from "../actions/app_action";
@@ -17,10 +17,9 @@ import {Authority} from "../models/user";
 import about_img from "../assets/images/about.jpg";
 import {FoodType} from "../models/menu_item";
 import profileAvatar from "../assets/images/profile.png";
-import {Gender} from "../models/gender";
 import {MenuItemListState, MenuItemState} from "../states/menu_item_state";
 import {MenuItemDTO} from "../dto/menu_item_dto";
-import {addMenuItem} from "../actions/manager_action";
+import {addMenuItem, removeMenuItem} from "../actions/manager_action";
 
 interface MenuPageState extends MenuItemState{
     addMenuItemFormAppear: boolean,
@@ -88,6 +87,7 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                 this.setState({
                     addMenuItemFormAppear: false
                 })
+                window.location.reload();
             } else {
                 this.setState({
                     errorMessage: this.t("failure")
@@ -99,6 +99,21 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
             })
         }
     }
+
+
+    removeMenuItem = async (menuItem: MenuItemState) => {
+        var i = await this.props.removeMenuItem(this.props.authentication.id_token, menuItem, this.props.menuItemListState)
+        if (i == 1) {
+            this.setState({
+                addMenuItemFormAppear: false
+            })
+        } else {
+            this.setState({
+                errorMessage: this.t("failure")
+            })
+        }
+    }
+
 
     handleImageChange = async (input: ChangeEvent<HTMLInputElement>) => {
         if(input.target.files) {
@@ -197,6 +212,7 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                                                     this.props.menuItemListState.items.length >= 1 ? this.props.menuItemListState.items.map((value) => {
                                                                         if (value.type.toString() == FoodType[FoodType.PIZZA])
                                                                             return <div className="col-md-4 text-center">
+                                                                                <a style={{position: "absolute", top: 10, right: 10, cursor: "pointer"}} onClick={() => this.removeMenuItem(value)}><i className="fas fa-times fa-2x"></i></a>
                                                                                 <div className="menu-wrap">
                                                                                     <a href="#" className="menu-img img mb-4"
                                                                                        style={{backgroundImage: `url(data:image/jpeg;base64,${value.picJpg})`}}></a>
@@ -228,6 +244,7 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                                                     this.props.menuItemListState.items.length >= 1 ?this.props.menuItemListState.items.map((value) => {
                                                                         if (value.type.toString() == FoodType[FoodType.DRINK])
                                                                             return <div className="col-md-4 text-center">
+                                                                                <a style={{position: "absolute", top: 10, right: 10, cursor: "pointer"}} onClick={() => this.removeMenuItem(value)}><i className="fas fa-times fa-2x"></i></a>
                                                                                 <div className="menu-wrap">
                                                                                     <a href="#" className="menu-img img mb-4"
                                                                                        style={{backgroundImage: `url(data:image/jpeg;base64,${value.picJpg})`}}></a>
@@ -259,6 +276,7 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                                                     this.props.menuItemListState.items.length >= 1 ?this.props.menuItemListState.items.map((value) => {
                                                                         if (value.type.toString() == FoodType[FoodType.BURGER])
                                                                             return <div className="col-md-4 text-center">
+                                                                                <a style={{position: "absolute", top: 10, right: 10, cursor: "pointer"}} onClick={() => this.removeMenuItem(value)}><i className="fas fa-times fa-2x"></i></a>
                                                                                 <div className="menu-wrap">
                                                                                     <a href="#" className="menu-img img mb-4"
                                                                                        style={{backgroundImage: `url(data:image/jpeg;base64,${value.picJpg})`}}></a>
@@ -290,6 +308,7 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                                                     this.props.menuItemListState.items.length >= 1 ? this.props.menuItemListState.items.map((value) => {
                                                                         if (value.type.toString() == FoodType[FoodType.PASTA])
                                                                             return <div className="col-md-4 text-center">
+                                                                                <a style={{position: "absolute", top: 10, right: 10, cursor: "pointer"}} onClick={() => this.removeMenuItem(value)}><i className="fas fa-times fa-2x"></i></a>
                                                                                 <div className="menu-wrap">
                                                                                     <a className="menu-img img mb-4"
                                                                                        style={{backgroundImage: `url(data:image/jpeg;base64,${value.picJpg})`}}></a>
@@ -441,7 +460,8 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, appActions>) => {
                 payload: localState
             })
         },
-        addMenuItem: (jwt: string, menuItem: MenuItemDTO, menuItemListState: MenuItemListState) => addMenuItem(dispatch, jwt, menuItem, menuItemListState)
+        addMenuItem: (jwt: string, menuItem: MenuItemDTO, menuItemListState: MenuItemListState) => addMenuItem(dispatch, jwt, menuItem, menuItemListState),
+        removeMenuItem: (jwt: string, menuItem: MenuItemDTO, menuItemListState: MenuItemListState) => removeMenuItem(dispatch, jwt, menuItem, menuItemListState)
     }
 }
 

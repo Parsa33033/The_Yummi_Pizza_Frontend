@@ -3,7 +3,7 @@ import {AUTHENTICATE, authenticationActions} from "./authentication_action";
 import {getMenuItemList, orderActions, SET_ORDER_LIST} from "./order_action";
 import {customerActions, getCustomer, SET_CUSTOMER} from "./cutomer_action";
 import {getPizzaria, pizzariaActions} from "./pizzaria_actions";
-import {managerActions, SET_MANAGER} from "./manager_action";
+import {getManager, managerActions, SET_MANAGER} from "./manager_action";
 import {localeActions} from "./locale_action";
 import {ThunkDispatch} from "redux-thunk";
 import {AuthenticationState, authenticationStateInit} from "../states/authentication_state";
@@ -38,6 +38,7 @@ export const appInit = async (dispatch: ThunkDispatch<{}, {}, appActions>) => {
         var i = await getUser(dispatch, jwt)
         if(i == 1) {
             i = await getCustomer(dispatch, jwt)
+            i = await getManager(dispatch, jwt)
             if (i == 1) {
                 return 1
             } else {

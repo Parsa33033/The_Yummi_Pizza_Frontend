@@ -18,6 +18,7 @@ import {OrderDTO} from "../dto/order_dto";
 import {order, SET_CART} from "../actions/order_action";
 import {AddressDTO} from "../dto/address_dto";
 import {CartState} from "../states/order_state";
+import validator from "validator";
 
 interface CheckoutPageState {
     firstName: string,
@@ -63,55 +64,60 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
     }
 
     order = async () => {
-        if (this.state.phoneNumber != "" && this.state.address1 != "" &&
-            this.state.address2 != "" && this.state.city != "" &&
-            this.state.city != "" && this.state.country != "" &&
-            this.state.state != "" && this.state.firstName != "" &&
-            this.state.lastName != "" && this.state.email != ""){
-            if (this.props.cartState.items.length >= 1) {
-                const address: AddressDTO = {
-                    phoneNumber: this.state.phoneNumber,
-                    country: this.state.country,
-                    city: this.state.city,
-                    address2: this.state.address2,
-                    address1: this.state.address1,
-                    state: this.state.state,
-                    id: -1,
-                }
-                const orderDTO: OrderDTO = {
-                    pizzariaId: 1,
-                    totalPrice: this.totalPrice,
-                    paidIn: this.props.localeState.currency,
-                    id: -1,
-                    delivered: false,
-                    date: new Date(Date.now()),
-                    customerId: this.customer.id,
-                    addressId: -1,
-                    address: address,
-                    items: this.props.cartState.items
-                }
-                var i = await this.props.order(orderDTO)
-                if (i == 1) {
-                    this.setState({
-                        errorMessage: "",
-                        done: true,
-                    })
-                    const emptyCart: CartState = {
-                        items: []
+        if (validator.isEmail(this.state.email)) {
+            if (this.state.phoneNumber != "" && this.state.address1 != "" &&
+                this.state.address2 != "" && this.state.city != "" &&
+                this.state.city != "" && this.state.country != "" &&
+                this.state.state != "" && this.state.firstName != "" &&
+                this.state.lastName != "" && this.state.email != ""){
+                if (this.props.cartState.items.length >= 1) {
+                    const address: AddressDTO = {
+                        phoneNumber: this.state.phoneNumber,
+                        country: this.state.country,
+                        city: this.state.city,
+                        address2: this.state.address2,
+                        address1: this.state.address1,
+                        state: this.state.state,
+                        id: -1,
                     }
-                    this.props.emptyCart(emptyCart)
-                } else {
-                    this.setState({
-                        errorMessage: "failure"
-                    })
+                    const orderDTO: OrderDTO = {
+                        pizzariaId: 1,
+                        totalPrice: this.totalPrice,
+                        paidIn: this.props.localeState.currency,
+                        id: -1,
+                        delivered: false,
+                        date: new Date(Date.now()),
+                        customerId: this.customer.id,
+                        addressId: -1,
+                        address: address,
+                        items: this.props.cartState.items
+                    }
+                    var i = await this.props.order(orderDTO)
+                    if (i == 1) {
+                        this.setState({
+                            errorMessage: "",
+                            done: true,
+                        })
+                        const emptyCart: CartState = {
+                            items: []
+                        }
+                        this.props.emptyCart(emptyCart)
+                    } else {
+                        this.setState({
+                            errorMessage: "failure"
+                        })
+                    }
                 }
+            } else {
+                this.setState({
+                    errorMessage: "please fill in all the inputs"
+                })
             }
         } else {
             this.setState({
-                errorMessage: "please fill in all the inputs"
+                errorMessage: this.t("email-invalid")
             })
         }
-
     }
 
     switchCurrency = () => {

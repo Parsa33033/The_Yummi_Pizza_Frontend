@@ -6,6 +6,7 @@
   "error": "Error!",
   "failure": "Operation Failed! please try again",
   "check-email": "check your email",
+  "email-invalid": "the email you entered is not valid!",
   "registration": {
     "registration": "registration",
     "register": "Register",

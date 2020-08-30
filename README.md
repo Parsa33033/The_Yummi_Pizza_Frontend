@@ -5,6 +5,7 @@ the backend and admin panel link: https://github.com/Parsa33033/The_Yummi_Pizza_
 
 
 ## Tech Used
+
 1) React frame work using Typescript programming language
 2) Redux for state management
 3) i18next for locale
@@ -45,7 +46,8 @@ note: remember that all the command must be executed in the project directory
 
 You can do couple of things in this app:
 
-###customer:
+customer:
+
 1) a customer can register and after registration a activation email would be sent to her/his email where she/he can click on the link given to activate the account
 2) a logged in customer or not a registered customer can add to cart and proceed to checkout(you can switch between Dollor and Euro with a button in both main page and cart page)
 3) make an order which gives adds to order list in customer menu on the top right of the page (if the customer is logged in) and then
@@ -54,7 +56,8 @@ an email of seccessful order would be sent to the customer
 5) customer can logout
 6) a customer can edit her/his profile so that next time she/he does not need to fill in the info needed in the checkout page. 
 
-###manager:
+manager:
+
 1) if you want to become a manager you have to register in the admin panel but you would not get an activation email because the admin has to activate you herself
 2) if you can loggin as the manager your menu panel consists of pages of orders and menus
     1. in the order menu you can see all the orders and you can check the checkbox for each order to confirm that the food has been delivered. by doing so, customer can see that her/his order has been delivered in her/his order page

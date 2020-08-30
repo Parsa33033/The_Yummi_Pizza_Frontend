@@ -36,10 +36,7 @@ Admin credentials:
 2) password: admin
 
 ## Pros
-1) used multiple design patterns such as dependency injection, DTO patterns, seperation of concerns with service classes and ... for a reusable, maintainable and testable app.
-2) Testable
-3) easy to deploy
-4) secure
+no pros
 
 ## Cons
 1) due to lack of time, there is no usage of container components

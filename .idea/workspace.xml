@@ -2,35 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e256b6f-6e8d-4e51-b3c8-8992f3033715" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/app_action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/app_action.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/about.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/about.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/bg_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/bg_1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/bg_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/bg_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/bg_2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/bg_2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/bg_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/bg_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/bg_3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/bg_3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/bg_4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/bg_4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/gallery-1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/gallery-1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/gallery-2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/gallery-2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/gallery-3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/gallery-3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/gallery-4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/gallery-4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/pizza-1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/pizza-1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/pizza-2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/pizza-2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/pizza-3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/pizza-3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/pizza-4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/pizza-4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/pizza-5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/pizza-5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/pizza-6.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/pizza-6.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/pizza-7.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/pizza-7.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/pizza-8.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/pizza-8.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/menu_section.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/menu_section.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/signup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/signup.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/urls.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/urls.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/checkout_page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/checkout_page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/menu_page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/menu_page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,23 +26,21 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build/docker-compose.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/component/signup.tsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="178">
               <caret line="151" column="43" selection-start-line="151" selection-start-column="43" selection-end-line="151" selection-end-column="43" />
               <folding>
                 <element signature="e#0#63#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/config/store.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#0#68#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -102,24 +73,24 @@
           <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="342">
+                <caret line="61" column="21" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assets/images/person_1.jpg">
           <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/component/menu_section.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-726">
-              <caret line="125" column="61" selection-start-line="125" selection-start-column="61" selection-end-line="125" selection-end-column="61" />
-              <folding>
-                <element signature="e#0#63#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/menu_page.tsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="348">
@@ -229,7 +200,6 @@
         <option value="$PROJECT_DIR$/src/component/contact_us.tsx" />
         <option value="$PROJECT_DIR$/src/pages/profile_page.tsx" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/actions/app_action.ts" />
         <option value="$PROJECT_DIR$/src/App.tsx" />
         <option value="$PROJECT_DIR$/src/actions/pizzaria_actions.ts" />
@@ -241,6 +211,7 @@
         <option value="$PROJECT_DIR$/src/component/signup.tsx" />
         <option value="$PROJECT_DIR$/src/config/urls.ts" />
         <option value="$PROJECT_DIR$/src/pages/menu_page.tsx" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -272,12 +243,6 @@
               <item name="the_yummi_pizza" type="b2602c69:ProjectViewProjectNode" />
               <item name="the_yummi_pizza" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the_yummi_pizza" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the_yummi_pizza" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -342,18 +307,18 @@
       <workItem from="1598591007775" duration="54517000" />
       <workItem from="1598684648135" duration="8413000" />
       <workItem from="1598698364359" duration="13980000" />
-      <workItem from="1598765330132" duration="20271000" />
+      <workItem from="1598765330132" duration="23261000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="222295000" />
+    <option name="totallyTimeSpent" value="225285000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20244215" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20244215" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -371,7 +336,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="TypeScript" order="10" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4993573" visible="true" weight="0.13458951" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4993573" visible="true" weight="0.42261103" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50064266" side_tool="true" weight="0.26110363" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -388,13 +353,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/build/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="28" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -536,20 +494,6 @@
     <entry file="file://$PROJECT_DIR$/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/docker-compose.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/config/i18n.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -607,13 +551,6 @@
     <entry file="file://$PROJECT_DIR$/src/assets/images/pasta-3.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/config/urls.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/menu_page.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="348">
@@ -621,6 +558,37 @@
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config/urls.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/docker-compose.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="342">
+            <caret line="61" column="21" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

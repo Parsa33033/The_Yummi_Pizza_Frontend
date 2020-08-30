@@ -36,7 +36,7 @@ Admin credentials:
 2) password: admin
 
 ## Pros
-no pros
+no pros for the frontend
 
 ## Cons
 1) due to lack of time, there is no usage of container components

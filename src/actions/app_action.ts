@@ -23,20 +23,20 @@ export type appActions = userActions |
 
 
 export const appInit = async (dispatch: ThunkDispatch<{}, {}, appActions>) => {
-    getPizzaria(dispatch)
-    getMenuItemList(dispatch)
+    await getPizzaria(dispatch)
+    await getMenuItemList(dispatch)
     var jwt = await localStorage.getItem("jwt")
     if (jwt != null && jwt != "") {
-        const authentication: AuthenticationState = {
-            id_token: jwt,
-            authenticated: true
-        }
-        dispatch({
-            type: AUTHENTICATE,
-            payload: authentication
-        })
         var i = await getUser(dispatch, jwt)
         if(i == 1) {
+            const authentication: AuthenticationState = {
+                id_token: jwt,
+                authenticated: true
+            }
+            dispatch({
+                type: AUTHENTICATE,
+                payload: authentication
+            })
             i = await getCustomer(dispatch, jwt)
             i = await getManager(dispatch, jwt)
             if (i == 1) {

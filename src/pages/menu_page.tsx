@@ -20,6 +20,7 @@ import profileAvatar from "../assets/images/profile.png";
 import {MenuItemListState, MenuItemState} from "../states/menu_item_state";
 import {MenuItemDTO} from "../dto/menu_item_dto";
 import {addMenuItem, removeMenuItem} from "../actions/manager_action";
+import {number} from "prop-types";
 
 interface MenuPageState extends MenuItemState{
     addMenuItemFormAppear: boolean,
@@ -66,6 +67,7 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
     }
 
     addMenuItem = async () => {
+
         if (this.state.priceEuro != 0 && this.state.priceDollor != 0 &&
             this.state.name != "" && this.state.picJpg != "" && this.state.ingredient != "") {
             const menuItem: MenuItemDTO = {
@@ -95,7 +97,7 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
             }
         } else {
             this.setState({
-                errorMessage: "please fill in all the inputs!"
+                errorMessage: "please fill in all the inputs and prices in number! "
             })
         }
     }
@@ -200,7 +202,7 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                                     </div>
                                                 </div>
 
-                                                <div className="col-md-12 d-flex align-items-center">
+                                                <div className="col-md-12 align-items-center">
 
                                                     <div className="tab-content ftco-animate" id="v-pills-tabContent">
 
@@ -295,7 +297,7 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
 
                                                                     }): <div/>
                                                                 }
-                                                                <div className="col-md-4 text-center" style={{textAlign: "center",  margin: "auto", display: "block"}} onClick={() =>this.appearMenuItemForm(FoodType.PASTA)}>
+                                                                <div className="col-md-4 text-center" style={{textAlign: "center",  margin: "auto", display: "block"}} onClick={() =>this.appearMenuItemForm(FoodType.BURGER)}>
                                                                     <a style={{cursor: "pointer"}}> <i className="fas fa-plus fa-5x"></i></a>
                                                                 </div>
                                                             </div>
@@ -326,7 +328,7 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                                                             </div>
                                                                     }): <div/>
                                                                 }
-                                                                <div className="col-md-4 text-center" style={{textAlign: "center",  margin: "auto", display: "block"}} onClick={() =>this.appearMenuItemForm(FoodType.BURGER)}>
+                                                                <div className="col-md-4 text-center" style={{textAlign: "center",  margin: "auto", display: "block"}} onClick={() =>this.appearMenuItemForm(FoodType.PASTA)}>
                                                                     <a style={{cursor: "pointer"}}><i className="fas fa-plus fa-5x"></i></a>
                                                                 </div>
                                                             </div>
@@ -388,7 +390,7 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                                                     <div className="row">
                                                                         {/*<label className="col-lg-3 control-label" style={{color: "white"}} >Price in Dollor:</label>*/}
                                                                         <div className="col-lg-8">
-                                                                            <input className="form-control" placeholder="Price in Dollor" type="number" style={{color: "white"}}  value={this.state.priceDollor} onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                                                                            <input className="form-control" placeholder="Price in Dollor" type="number" style={{color: "white"}}  value={this.state.priceDollor != 0 ? this.state.priceDollor : ""} onChange={(event: ChangeEvent<HTMLInputElement>) => {
                                                                                 this.setState({priceDollor: Number(event.target.value)})
                                                                             }}/>
                                                                         </div>
@@ -398,7 +400,7 @@ class MenuPage extends React.Component<WithTranslation & ReturnType<typeof mapSt
                                                                     <div className="row">
                                                                         {/*<label className="col-lg-3 control-label" style={{color: "white"}} >Price in Euro:</label>*/}
                                                                         <div className="col-lg-8">
-                                                                            <input className="form-control" type="number"  placeholder="Price in Euro" style={{color: "white"}} value={this.state.priceEuro} onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                                                                            <input className="form-control" type="number"  placeholder="Price in Euro" style={{color: "white"}} value={this.state.priceEuro != 0 ? this.state.priceEuro : ""} onChange={(event: ChangeEvent<HTMLInputElement>) => {
                                                                                 this.setState({priceEuro: Number(event.target.value)})
                                                                             }}/>
                                                                         </div>

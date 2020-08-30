@@ -1,6 +1,10 @@
 
-const dns = "localhost"
-const port = "8080"
+const dns = "104.248.254.44"
+const port = "80"
+
+// const dns = "localhost"
+// const port = "8080"
+
 const protocol = "http"
 
 export const url = protocol + "://" + dns + ":" + port

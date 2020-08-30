@@ -25,7 +25,6 @@ class App extends React.Component<ReturnType<typeof mapStateToProps> & ReturnTyp
     }
 
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
-
         return (
             <div className="App">
                 <Router>

@@ -123,7 +123,7 @@ class MenuSection extends React.Component<WithTranslation & MenuSectionProps & R
                                         </div>
                                     </div>
 
-                                    <div className="col-md-12 d-flex align-items-center">
+                                    <div className="col-md-12 align-items-center">
 
                                         <div className="tab-content ftco-animate" id="v-pills-tabContent">
 
@@ -136,11 +136,11 @@ class MenuSection extends React.Component<WithTranslation & MenuSectionProps & R
                                                             if (value.type.toString() == FoodType[FoodType.PIZZA])
                                                                 return <div className="col-md-4 text-center">
                                                                     <div className="menu-wrap">
-                                                                        <a href="#" className="menu-img img mb-4"
+                                                                        <a className="menu-img img mb-4"
                                                                            style={{backgroundImage: `url(data:image/jpeg;base64,${value.picJpg})`}}></a>
                                                                         {/*src={`data:image/jpeg;base64,${this.props.image}`}*/}
                                                                         <div className="text">
-                                                                            <h3><a href="#">{value.name}</a></h3>
+                                                                            <h3><a >{value.name}</a></h3>
                                                                             <p>{value.ingredient}</p>
                                                                             <p className="price"><span>{
                                                                                 Currency[this.props.localeState.currency].toString() == Currency[Currency.DOLLOR] ?
@@ -168,11 +168,11 @@ class MenuSection extends React.Component<WithTranslation & MenuSectionProps & R
                                                             if (value.type.toString() == FoodType[FoodType.DRINK])
                                                                 return <div className="col-md-4 text-center">
                                                                     <div className="menu-wrap">
-                                                                        <a href="#" className="menu-img img mb-4"
+                                                                        <a className="menu-img img mb-4"
                                                                            style={{backgroundImage: `url(data:image/jpeg;base64,${value.picJpg})`}}></a>
                                                                         {/*src={`data:image/jpeg;base64,${this.props.image}`}*/}
                                                                         <div className="text">
-                                                                            <h3><a href="#">{value.name}</a></h3>
+                                                                            <h3><a>{value.name}</a></h3>
                                                                             <p>{value.ingredient}</p>
                                                                             <p className="price"><span>{
                                                                                 Currency[this.props.localeState.currency].toString() == Currency[Currency.DOLLOR] ?
@@ -199,11 +199,11 @@ class MenuSection extends React.Component<WithTranslation & MenuSectionProps & R
                                                             if (value.type.toString() == FoodType[FoodType.BURGER])
                                                                 return <div className="col-md-4 text-center">
                                                                     <div className="menu-wrap">
-                                                                        <a href="#" className="menu-img img mb-4"
+                                                                        <a className="menu-img img mb-4"
                                                                            style={{backgroundImage: `url(data:image/jpeg;base64,${value.picJpg})`}}></a>
                                                                         {/*src={`data:image/jpeg;base64,${this.props.image}`}*/}
                                                                         <div className="text">
-                                                                            <h3><a href="#">{value.name}</a></h3>
+                                                                            <h3><a >{value.name}</a></h3>
                                                                             <p>{value.ingredient}</p>
                                                                             <p className="price"><span>{
                                                                                 Currency[this.props.localeState.currency].toString() == Currency[Currency.DOLLOR] ?
@@ -234,7 +234,7 @@ class MenuSection extends React.Component<WithTranslation & MenuSectionProps & R
                                                                            style={{backgroundImage: `url(data:image/jpeg;base64,${value.picJpg})`}}></a>
                                                                         {/*src={`data:image/jpeg;base64,${this.props.image}`}*/}
                                                                         <div className="text">
-                                                                            <h3><a href="#">{value.name}</a></h3>
+                                                                            <h3><a >{value.name}</a></h3>
                                                                             <p>{value.ingredient}</p>
                                                                             <p className="price"><span>{
                                                                                 Currency[this.props.localeState.currency].toString() == Currency[Currency.DOLLOR] ?

@@ -193,7 +193,7 @@ class CheckoutPage extends React.Component<WithTranslation & ReturnType<typeof m
                                 {
                                     this.props.cartState.items.map((item) => {
                                         return (
-                                            <li className="list-group-item d-flex justify-content-between lh-condensed">
+                                            <li className="list-group-item justify-content-between lh-condensed">
                                                 <div>
                                                     <h6 className="my-0">{item.menuItem.name}</h6>
                                                     <small className="text-muted float-left">Number: {item.number}</small>

@@ -74,7 +74,7 @@ Admin credentials:
 1) username: admin
 2) password: admin
 
-Already activated manager credentials:
+Already activated **manager** credentials: (Use manager credentials in the website and not in admin panel. Use admin panel only if you want to register as new manager)
 1) username: manager@manager.com
 2) password: manger
 

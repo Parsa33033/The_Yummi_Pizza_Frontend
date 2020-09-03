@@ -78,6 +78,8 @@ Already activated **manager** credentials: (Use manager credentials in the websi
 1) username: manager@manager.com
 2) password: manager
 
+note: you can register as a new manager in admin panel (you don't get activation email when registering as manager in admin panel. Admin has to activate the account herself/himself)
+
 ## Pros
 no pros for the frontend
 

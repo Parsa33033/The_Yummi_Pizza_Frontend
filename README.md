@@ -48,7 +48,7 @@ note: remember that all the command must be executed in the project directory
 
 You can do couple of things in this app:
 
-customer:
+as customer:
 
 1) A customer can register and after registration an activation email would be sent to her/his email where she/he can click on the link given to activate the account
 2) A logged in customer (or not a registered customer) can add to cart and proceed to checkout (**you can switch between Dollor and Euro prices with a button in both main page and cart page**)
@@ -58,7 +58,7 @@ an email of successful order would be sent to the customer
 5) Customer can logout
 6) A customer can edit her/his profile so that next time she/he does not need to fill in the info needed in the checkout page. 
 
-manager:
+as manager:
 
 1) If you want to become a manager you have to register in the admin panel but you would not get an activation email because the admin has to activate you herself
 2) If you can login as the manager your menu panel consists of pages of orders and menus
@@ -76,7 +76,7 @@ Admin credentials:
 
 Already activated **manager** credentials: (Use manager credentials in the website and not in admin panel. Use admin panel only if you want to register as new manager)
 1) username: manager@manager.com
-2) password: manger
+2) password: manager
 
 ## Pros
 no pros for the frontend
